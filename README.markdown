@@ -1,2 +1,2 @@
-<h1>Quarters</h1>
+<h2>Quarters</h2>
 <h4>Project Management Tool</h4>
