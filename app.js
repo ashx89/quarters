@@ -1,17 +1,17 @@
 var express = require('express')
-	, app = express()
-	, Mongo = require('mongodb').MongoClient
-	, routes = require('./routes')
-	, path = require('path');
-	// , mongoose = require('mongoose'); - maybe mongoose?
+    , app = express()
+    , Mongo = require('mongodb').MongoClient
+    , routes = require('./routes')
+    , path = require('path');
+    // , mongoose = require('mongoose'); - maybe mongoose?
 
 Mongo.connect('mongodb://localhost:27017/quarters', function(err, db) {
 
-	if (err) throw err;
+    if (err) throw err;
 
-	app.set('views', __dirname + '/views');
-	app.set('view engine', 'ejs');
-	// Middleware to populate 'req.cookies' so we can access cookies
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'ejs');
+    // Middleware to populate 'req.cookies' so we can access cookies
     app.use(express.cookieParser());
     // Middleware to populate 'req.body' so we can access POST variables
     app.use(express.bodyParser());
