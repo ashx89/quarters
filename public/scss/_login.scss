@@ -1,0 +1,45 @@
+/*
+*	PAGE SPECIFIC: LOGIN
+*	
+*	STYLES USED FOR THE LOGIN PAGE
+*
+*/
+#page-login {
+	background: #268CBB;
+
+	& .container {
+		& .inner {
+			position: relative;
+			width: 300px;
+			margin: 0 auto;
+			padding: 5% 0;
+			text-align: center;
+		}
+	}
+}
+
+section#title {
+	color: white;
+
+	& h1 {
+		font-size: 62px;
+	}
+}
+
+section#login {
+	margin: 40px 0;
+}
+
+#login-form {
+	& input {
+		margin-bottom: 10px;
+		@include border-right-radius(3px);
+	}
+	& button {
+		width: 100%;
+	}
+}
+
+#login-errors {
+	margin: 20px 0;
+}

@@ -1,0 +1,57 @@
+[class*='icon-'] {
+	background: url(../images/sprite.png) no-repeat;
+	display: block;
+	position: absolute;
+}
+
+.icon-settings {
+	background-position: -34px 0;
+	width: 34px;
+	height: 27px;
+	top: 12px;
+	left: 0;
+}
+.icon-project {
+	background-position: -100px 0;
+	width: 34px;
+	height: 20px;
+}
+.icon-avatar {
+	background-position: -131px 0;
+	width: 30px;
+	height: 20px;
+}
+.icon-new-item {
+	background-position: -167px 0;
+	width: 30px;
+	height: 30px;
+}
+.icon-bin {
+	background-position: -245px 0;
+	width: 24px;
+	height: 20px;
+	opacity: 0.3;
+	&:hover {
+		opacity: 1;
+	}
+}
+.icon-avatar-black {
+	background-position: -267px 0;
+	width: 20px;
+	height: 30px;
+}
+.icon-calendar {
+	background-position: -315px 0;
+	width: 20px;
+	height: 30px;
+}
+.icon-tags {
+	background-position: -291px 0;
+	width: 20px;
+	height: 30px;
+}
+.icon-subtasks {
+	background-position: -341px 0;
+	width: 20px;
+	height: 30px;
+}

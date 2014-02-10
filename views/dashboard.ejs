@@ -1,0 +1,208 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title><%= title %></title>
+	<link rel="stylesheet" href="css/global.css">
+</head>
+<body id="page-dashboard">
+
+	<div class="container" id="document">
+
+		<div id="loading"></div>
+
+		<div id="dashboard">
+			<header id="header" class="clear">
+				<h1 class="logo">Quarters</h1>
+				<nav id="nav" class="clear">
+					<ul role="navigation">
+						<li>
+							<a href="#0" id="nav-settings">
+								<span class="visually-hidden">Settings</span>
+								<span class="icon-settings"></span>
+							</a>
+							<ul class="dropdown">
+								<li><a href="#0" class="">Settings</a></li>
+								<li><a href="#0" class="">Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<div id="dashboard-body" class="clear">
+				<aside id="sidebar">
+					<section class="sidebar-module">
+						<div class="module-header clear">
+							<h2>Projects</h2>
+							<a id="add-new-project" href="#0" class="plus">+</a>
+						</div>
+
+						<div class="module-body">
+							<ul>
+								<% for (var i = 0; i < projects.length; i++) { %>
+								<li>
+									<a href="#0">
+										<i class="icon-project"></i>
+										<span><%= projects[i].title %></span>
+									</a>
+								</li>
+								<% } %>
+							</ul>
+						</div>
+					</section>
+					<section class="sidebar-module">
+						<div class="module-header clear">
+							<h2>Team</h2>
+							<a href="#0" class="plus">+</a>
+						</div>
+						<div class="module-body">
+							<ul>
+								<li>
+									<a href="#0">
+										<i class="icon-avatar"></i>
+										<span>Ashley</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</section>
+				</aside>
+
+				<section id="tasks">
+					<div class="tasks-header clear">
+						<h3>Tasks in - <span>"Core Inc."</span></h3>
+						<a id="add-new-task" href="#0">
+							<i class="icon-new-item"></i>
+						</a>
+					</div>
+					<div class="tasks-body">
+						<ul>
+							<li class="task-item clear">
+								<input type="checkbox" id="task_123" />
+								<label class="checkbox-label" for="task_123"></label>
+								<a href="#0" class="wrap">
+									<p class="task-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+								</a>
+							</li>
+							<li class="task-item clear">
+								<input type="checkbox" id="task_124" />
+								<label class="checkbox-label" for="task_124"></label>
+								<a href="#0" class="wrap">
+									<p class="task-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+								</a>
+							</li>
+							<li class="task-item clear">
+								<input type="checkbox" id="task_125" />
+								<label class="checkbox-label" for="task_125"></label>
+								<a href="#0" class="wrap">
+									<p class="task-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<section id="task">
+					<div class="task-header shadow-box clear">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h2>
+						<a href="#0">
+							<i class="icon-bin"></i>
+						</a>
+					</div>
+
+					<div class="task-body shadow-box">
+						<div class="task-info clear">
+							<i class="icon-avatar-black"></i>
+							<div class="label">
+								<span>assigned to:</span>
+								<h4>Ashley</h4>
+							</div>
+						</div>
+						<div class="task-info clear">
+							<i class="icon-calendar"></i>
+							<div class="label">
+								<span>deadline:</span>
+								<h4>28/12/2013</h4>
+							</div>
+						</div>
+						<div class="task-info clear">
+							<i class="icon-tags"></i>
+							<div class="label">
+								<span>tags:</span>
+								<h4>development, design</h4>
+							</div>
+						</div>
+						<div class="task-info clear">
+							<i class="icon-subtasks"></i>
+							<div class="label">
+								<span>subtasks:</span>
+								<h4>Subtasks</h4>
+							</div>
+						</div>
+					</div>
+
+					<div class="task-footer">
+						<form id="comment-form">
+							<input type="text" id="comment" placeholder="Comment..." />
+							<input type="submit" value="Submit" style="display: none;" />
+						</form>
+						<ul id="comments">
+							<li class="clear">
+								<div class="comment">
+									<div class="comment-header clear">
+										<h5>Ashley</h5>
+										<time>2 days ago</time>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+								</div>
+								<a href="#0">
+									<i class="icon-bin"></i>
+								</a>
+							</li>
+							<li class="clear">
+								<div class="comment">
+									<div class="comment-header clear">
+										<h5>Ashley</h5>
+										<time>2 days ago</time>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+								</div>
+								<a href="#0">
+									<i class="icon-bin"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+				</section><!--end task-->
+
+			</div><!--end dashboard body-->
+		</div><!--end dashboard-->
+
+
+		<!--Modal goes here-->
+		<div class="modal hidden" data-modal="new-project">
+			<div class="modal-container">
+				<div id="modal-header">
+					<h4>New Project</h4>
+				</div>
+				<div id="modal-body">
+					<form id="new-project" class="clear">
+						<input type="text" class="input-single" placeholder="New Project..."/>
+						<button class="button button-green button-single">Add</button>
+					</form>
+				</div>
+				<!--<div id="modal-footer">
+					<p>Footer</p>
+				</div>-->
+			</div>
+			<div class="modal-overlay"></div>
+		</div><!--end modal-->
+
+	</div><!--end container-->
+	<script src="js/app.min.js"></script>
+<!--<script data-main="js/main" src="js/libs/require.js"></script>-->
+<!--<script data-main="main" src="scripts/vendor/requirejs/require.js"></script>-->
+<script src="http://localhost:8000/livereload.js"></script>
+</body>
+</html>

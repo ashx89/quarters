@@ -1,0 +1,80 @@
+header {
+	width: 100%;
+	height: 50px;
+	background: $blue;
+	position: relative;
+
+	& .logo {
+		color: white;
+		text-align: center;
+		font-size: 22px;
+		padding: 5px 0;
+		position: absolute;
+		left: 50%;
+		margin-left: -50px;
+	}
+	& nav {
+		width: 10%;
+		position: absolute;
+		right: 0;
+		& ul {
+			height: inherit;
+			& li {
+				height: inherit;
+				position: relative;
+				& a {
+					display: block;
+					height: inherit;
+					& span {
+						margin-left: 45%;
+					}
+				}
+			}
+		}
+	}
+
+	& .logo, nav {
+		float: left;
+		height: inherit;
+	}
+}
+
+.dropdown {
+	display: none;
+	position: absolute;
+	background: #fff;
+	z-index: 99;
+	right: 10%;
+	top: 55px;
+	width: 150px;
+	border: 5px solid $darkgray;
+	box-shadow: 0 4px 8px rgba(#000, 0.7);
+	height: auto;
+	&:before {
+		content: "";
+		top: -15px;
+		right: 10px;
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 12px solid $darkgray;
+	}
+	& li {
+		height: inherit;
+		border-top: 1px solid $midgray;
+		&:first-child {
+			border-top: none;
+		}
+		& a {
+			padding: 8px;
+			font-size: 13px;
+			color: #000;
+			&:hover {
+				background: $midgray;
+				color: white;
+			}
+		}
+	}
+}

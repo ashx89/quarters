@@ -1,0 +1,88 @@
+/*
+*	GENERIC STYLES FOR:
+*	
+*	FORMS, INPUTS, BUTTONS, TEXTAREAS
+*
+*/
+input {
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid $lightgray;
+	&:focus {
+		outline-width: 1px;
+		outline-color: $midgray;
+	}
+}
+#login input {
+	border: none;
+	&:focus {
+		outline-width: 0;
+		outline-color: none;
+	}
+}
+
+.input-labelled {
+	text-align: left;
+
+	& label {
+		float: left;
+		width: 25%;
+		background: $lightgray;
+		font-size: 13px;
+		padding: 11px 10px 11px 8px;
+		border-right: 1px solid $gray;
+		@include border-left-radius(3px);
+	}
+	& input {
+		width: 75%;
+		float: right;
+	}
+}
+.input-single {
+	float: left;
+}
+
+button {
+	border: none;
+	padding: 10px 15px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	@include border-radius(3px);
+	&:hover {
+		cursor: pointer;
+	}
+	&:focus {
+		outline: none;
+	}
+}
+.button-green {
+	background: $green;
+}
+.button-single {
+	float: right;
+}
+
+
+input[type=checkbox] {
+	display: none;
+}
+input[type=checkbox] + label {
+	z-index: 100;
+	display: inline-block;
+	width: 30px;
+	height: 20px;
+	background: url(../images/sprite.png) no-repeat;
+	background-position: -220px 0;
+	cursor: pointer;
+	vertical-align: middle;
+}
+input[type=checkbox]:checked + label {
+	background-position: -194px 0;
+}
+
+input[type=date] {
+	width: 200px;
+	padding: 5px;
+	font-family: Helvetica, sans-serif;
+}

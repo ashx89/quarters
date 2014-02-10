@@ -1,0 +1,36 @@
+/*
+*	USED FOR:
+*	
+*	VARIABLES, RE-USABLE PARTS
+*
+*/
+$lightgray: #EFEFEF;
+$gray: #EAEBEB;
+$midgray: #B6B9B9;
+$darkgray: #333333;
+$blackgray: #2A2A2A;
+
+$textgray: lighten($darkgray, 25);
+
+$green: #25c072;
+$red: #A43737;
+
+$blue: #268CBB;
+
+.logo {
+	font-family: candy;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.loading {
+	display: none;
+	background-image: url(../images/spinner.gif);
+	background-repeat: no-repeat;
+	width: 31px;
+	height: 31px;
+	margin: 20px auto;
+	z-index: 99;
+	box-shadow: 0 0 5px black;
+}
