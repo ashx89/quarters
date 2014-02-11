@@ -13,7 +13,7 @@ input {
 		outline-color: $midgray;
 	}
 }
-#login input {
+.auth-form input {
 	border: none;
 	&:focus {
 		outline-width: 0;

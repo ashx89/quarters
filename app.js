@@ -11,11 +11,9 @@ Mongo.connect('mongodb://localhost:27017/quarters', function(err, db) {
 
     app.set('views', __dirname + '/views');
     app.set('view engine', 'ejs');
-    // Middleware to populate 'req.cookies' so we can access cookies
+    
     app.use(express.cookieParser());
-    // Middleware to populate 'req.body' so we can access POST variables
     app.use(express.bodyParser());
-    // Static files found in public
     app.use(express.static(path.join(__dirname, 'public')));
 
     routes(app, db);

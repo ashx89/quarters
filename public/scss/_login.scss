@@ -4,7 +4,8 @@
 *	STYLES USED FOR THE LOGIN PAGE
 *
 */
-#page-login {
+#page-login,
+#page-signup {
 	background: #268CBB;
 
 	& .container {
@@ -26,11 +27,12 @@ section#title {
 	}
 }
 
-section#login {
+section#login,
+section#signup {
 	margin: 40px 0;
 }
 
-#login-form {
+.auth-form {
 	& input {
 		margin-bottom: 10px;
 		@include border-right-radius(3px);

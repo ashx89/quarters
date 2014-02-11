@@ -11,17 +11,33 @@
 
 			<section id="title">
 				<h1 class="logo">Quarters</h1>
-				<p class="sub-title">Real-time, Collaborative Project Management tool</Pp>
+				<p class="sub-title">Real-time, Collaborative Project Management tool</p>
 			</section>
 
-			<section id="login"></section>
+			<section id="login">
+				<form class="auth-form" method="post">
+					<div class="input-labelled clear">
+						<label for="username" class="text-hidden">Username
+							<span class="icon-email"></span>
+						</label>
+						<input type="username" id="username" name="username" />
+					</div>
+					<div class="input-labelled clear">
+						<label class="icon-password" for="password">Password</label>
+						<input type="password" id="password" name="password" />
+					</div>
+					<button type="submit" class="button-green" id="login-button">Login</button>
+				</form>
+				<div id="login-errors">
+					<div class="error"><%= login_error %></div>
+				</div>
+			</section>
 
 		</div><!--end inner-->
 	</div><!--end container-->
 
 
-<script data-main="scripts/main" src="scripts/vendor/requirejs/require.js"></script>
-<script src="scripts/quarters.js"></script>
+<script src="js/app.min.js"></script>
 <!--<script data-main="main" src="scripts/vendor/requirejs/require.js"></script>-->
 <script src="http://localhost:8000/livereload.js"></script>
 </body>
