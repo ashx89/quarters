@@ -27,21 +27,26 @@ function UserDAO(db) {
 
 			if (err) return callback(err, null);
 
-			if (user){
+			// Set up error object
+			var error = {};
+			error.message = [];
+
+			if (user) {
 				if (bcrypt.compareSync(password, user.password)) {
 					callback(null, user);
 				}
 				else {
-					var invalid_password_error = new Error("Invalid Password");
-					invalid_password_error.invalid_password = true;
-					callback(invalid_password_error, null);
+					err.message.push(new Error("Invalid Password"));
+					err.password_error = true;
+					callback(error, null);
 				}
 			}
 			else {
-				var no_such_user_error = new Error("User: " + user + " does not exists");			
-				no_such_user_error.no_such_user = true;
-				callback(no_such_user_error, null);
+				err.message.push(new Error("User: " + user + " does not exists"));			
+				err.no_user_error = true;
+				callback(error, null);
 			}
+
 		};
 
 		users.findOne({'_id': username}, validateDoc);

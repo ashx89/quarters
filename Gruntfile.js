@@ -43,6 +43,9 @@ module.exports = function(grunt) {
             scss: {
                 files: ['public/scss/**/*.scss'],
                 tasks: ['compass']
+            },
+            templates: {
+                files: ['public/templates/**/*.html']
             }
         },
 

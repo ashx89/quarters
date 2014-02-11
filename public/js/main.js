@@ -2,6 +2,8 @@
 
 require.config({
 
+	baseUrl: '/',
+
 	shim: {
 		underscore: {
 			exports: '_'
@@ -14,14 +16,19 @@ require.config({
 	},
 
 	paths: {
-		jquery: 	'libs/jquery.min',
-		backbone: 	'libs/backbone-min',
-		underscore: 'libs/underscore-min',
+		jquery: 	'js/libs/jquery.min',
+		backbone: 	'js/libs/backbone-min',
+		underscore: 'js/libs/underscore-min',
+		text: 		'js/libs/requirejs-text',
+
+		router: 	'js/router'
 	}
 
 });
 
-require(['backbone'], function(Backbone) {
+require(['backbone', 'router'], function(Backbone, Router) {
+
+	//new Router();
 
     Backbone.history.start({
         pushState: true,

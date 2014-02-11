@@ -32,11 +32,14 @@
 					</div>
 					<button type="submit" class="button-green" id="login-button">Signup</button>
 				</form>
-				<div id="login-errors">
+				<div id="login-errors" data-errors="<%= isErrors %>">
 					<div class="error"><%= username_error %></div>
 					<div class="error"><%= password_error %></div>
 					<div class="error"><%= verify_error %></div>
 				</div>
+
+				<a class="form-link" href="/">Have Account? Login</a>
+
 			</section>
 
 		</div><!--end inner-->

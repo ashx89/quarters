@@ -9,9 +9,7 @@ function ProjectsDAO(db) {
 		var project = { title: title, date: new Date() };
 
 		projects.insert(project, function(err, doc) {
-			
 			if (err) throw err;
-
 			console.log("New project created");
 			callback(err, doc);
 		});
@@ -20,13 +18,10 @@ function ProjectsDAO(db) {
 	this.getProjects = function(num, callback) {
 
 		projects.find().sort('date', -1).limit(num).toArray(function(err, items) {
-
 			if (err) throw err;
-
 			console.log("Found " + items.length + " projects");
 			callback(err, items);
 		});
-
 	};
 
 };

@@ -12,6 +12,8 @@
 	clear: both;
 }
 
+[data-errors="false"] { display: none; }
+
 .error {
 	background: $red;
 	width: 100%;

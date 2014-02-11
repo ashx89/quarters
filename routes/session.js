@@ -22,10 +22,8 @@ var UserDAO = require('../objects/users').UserDAO
 
 
     this.displayLogin = function(req, res, next) {
-
         if (req.username) res.redirect('/dashboard');
-
-        return res.render('index', { username: "", password: "", login_error: ""});
+        return res.render('index', { username: "", password: "", login_error: "", isErrors: false});
     };
 
 
@@ -39,11 +37,13 @@ var UserDAO = require('../objects/users').UserDAO
         users.validateLogin(username, password, function(err, user) {
 
             if (err) {
-                if (err.no_such_user) return res.render('index', {username: "", passowrd: "", login_error: "No Such User"});
+                if (err.message) {
+                    for (var i = 0; i < err.message.length; i++) {
+                        return res.render('index', {username: "", passowrd: "", login_error: err.message[i], isErrors: true});
+                    }
+                }
+                else return next(err);
             }
-            else if (err.invalid_password) return res.render('index', {username: "", passowrd: "", login_error: "Invalid Password"});
-
-            else return next(err);
 
             sessions.sessionStart(user['_id'], function(err, sessionID) {
 
@@ -68,12 +68,14 @@ var UserDAO = require('../objects/users').UserDAO
 
 
     this.displaySignup = function(req, res, next) {
+        if (req.username) res.redirect('/dashboard');
         res.render('signup', {
             username: "",
             username_error: "",
             password: "",
             password_error: "",
-            verify_error: ""
+            verify_error: "",
+            isErrors: false
         });
     };
 
@@ -87,19 +89,20 @@ var UserDAO = require('../objects/users').UserDAO
         errors['password_error'] = "";
         errors['verify_error']   = "";
 
-        if (!USER_REGX.test(username))  {
+        if (!USER_REGX.test(username) || !username)
             errors['username_error'] = "Invalid username. Please use only letters and numbers";
-            return false;
-        }
+            errors['isErrors'] = true;
 
-        if (!PASS_REGX.test(password)) {
+        if (!PASS_REGX.test(password) || !password)
             errors['password_error'] = "Invalid password.";
-            return false;
-        }
+            errors['isErrors'] = true;
 
-        if (password != verify) {
+        if (password != verify || !verify)
             errors['verify_error'] = "Passwords do not match.";
-            return false;
+            errors['isErrors'] = true;
+
+        for (var name in errors) {
+            if (errors[name] !== "") return false;
         }
 
         return true;
@@ -121,6 +124,7 @@ var UserDAO = require('../objects/users').UserDAO
                 if (err) {
                     if (err.code == '11000') {
                         errors['username_error'] = "Username already in use.";
+                        errors['isErrors'] = true;
                         return res.render('signup', errors);
                     }
                     else {
@@ -154,17 +158,16 @@ var UserDAO = require('../objects/users').UserDAO
         projects.getProjects(5, function(err, items) {
             if (err) throw err;
 
-            console.log("Found " + items.length + " projects");
-
             return res.render('dashboard', {
                 title: 'Dashboard',
                 username: req.username,
                 projects: items
             });
         });
+        
     };
 
- };
+};
 
 module.exports = SessionHandler;
 

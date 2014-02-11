@@ -28,17 +28,20 @@
 					</div>
 					<button type="submit" class="button-green" id="login-button">Login</button>
 				</form>
-				<div id="login-errors">
+				<div id="login-errors" data-errors="<%= isErrors %>">
 					<div class="error"><%= login_error %></div>
 				</div>
+
+				<a class="form-link" href="/signup">No Account? Sign Up</a>
+
 			</section>
 
 		</div><!--end inner-->
 	</div><!--end container-->
 
 
-<script src="js/app.min.js"></script>
-<!--<script data-main="main" src="scripts/vendor/requirejs/require.js"></script>-->
-<script src="http://localhost:8000/livereload.js"></script>
+<!--script src="js/app.min.js"></script>-->
+<script data-main="js/main" src="js/libs/require.js"></script>
+<script src="http://localhost:4000/livereload.js"></script>
 </body>
 </html>

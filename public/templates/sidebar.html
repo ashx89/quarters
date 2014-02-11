@@ -1,0 +1,35 @@
+<section class="sidebar-module">
+	<div class="module-header clear">
+		<h2>Projects</h2>
+		<a id="add-new-project" href="#0" class="plus">+</a>
+	</div>
+
+	<div class="module-body">
+		<ul>
+			<% for (var i = 0; i < projects.length; i++) { %>
+			<li>
+				<a href="#0">
+					<i class="icon-project"></i>
+					<span><%= projects[i].title %></span>
+				</a>
+			</li>
+			<% } %>
+		</ul>
+	</div>
+</section>
+<section class="sidebar-module">
+	<div class="module-header clear">
+		<h2>Team</h2>
+		<a href="#0" class="plus">+</a>
+	</div>
+	<div class="module-body">
+		<ul>
+			<li>
+				<a href="#0">
+					<i class="icon-avatar"></i>
+					<span><%= username %></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</section>
