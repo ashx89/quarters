@@ -1,0 +1,50 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Quarters</title>
+	<link rel="stylesheet" href="css/global.css">
+</head>
+<body id="page-signup">
+
+	<div class="container" id="document">
+		<div class="inner">
+
+			<section id="title">
+				<h1 class="logo">Quarters</h1>
+				<p class="sub-title">Real-time, Collaborative Project Management tool</p>
+			</section>
+
+			<section id="signup">
+				<form class="auth-form" method="post">
+					<div class="input-labelled clear">
+						<label for="username" class="text-hidden">Username
+							<span class="icon-email"></span>
+						</label>
+						<input type="username" id="username" name="username" />
+					</div>
+					<div class="input-labelled clear">
+						<label class="icon-password" for="password">Password</label>
+						<input type="password" id="password" name="password" />
+					</div>
+					<div class="input-labelled clear">
+						<label class="icon-password" for="password_confirm">Verify</label>
+						<input type="password" id="password_confirm" name="password_confirm" />
+					</div>
+					<button type="submit" class="button-green" id="login-button">Signup</button>
+				</form>
+				<div id="login-errors">
+					<div class="error"><%= username_error %></div>
+					<div class="error"><%= password_error %></div>
+					<div class="error"><%= verify_error %></div>
+				</div>
+			</section>
+
+		</div><!--end inner-->
+	</div><!--end container-->
+
+
+<script src="js/app.min.js"></script>
+<!--<script data-main="main" src="scripts/vendor/requirejs/require.js"></script>-->
+<script src="http://localhost:8000/livereload.js"></script>
+</body>
+</html>
