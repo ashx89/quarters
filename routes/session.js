@@ -167,6 +167,22 @@ var UserDAO = require('../objects/users').UserDAO
         
     };
 
+
+
+    this.handleNewProject = function(req, res, next) {
+
+        console.log("User submitted title: " + title);
+
+        var title = req.body.title;
+
+       projects.newProject(title, function(err, doc) {
+            if (err) return next(err);
+            console.log('new project added to collection');
+            res.send(doc[0]);
+        }); 
+
+    };
+
 };
 
 module.exports = SessionHandler;

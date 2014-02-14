@@ -9,13 +9,24 @@ module.exports = function(grunt) {
         requirejs: {
             js: {
                 options: {
-                    baseUrl:        'public/js',
-                    name:           'main',
+                    baseUrl:        'public/',
+                    name:           'js/main',
                     optimize:       'uglify',
-                    paths:          {'req': 'libs/require'},
+                    paths:          {'req': 'js/libs/require'},
                     mainConfigFile: 'public/js/main.js',
                     include:        ['req'],
                     out:            'public/js/app.min.js'
+                }
+            },
+            dist: {
+                options: {
+                    baseUrl:        'public/',
+                    name:           'js/main',
+                    optimize:       'uglify',
+                    paths:          {'req': 'js/libs/require'},
+                    mainConfigFile: 'public/js/main.js',
+                    include:        ['req'],
+                    out:            'dist/js/app.min.js'
                 }
             },
             css: {

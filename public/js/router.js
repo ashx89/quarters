@@ -1,9 +1,10 @@
 define([
 	'backbone',
-	'js/views/Dashboard'
-], function(Backbone, Dashboard) {
+	'js/collections/projects',
+	'js/views/projects',
+	'js/views/appView'
 
-	var view;
+], function(Backbone, ProjectCollection, ProjectsView, AppView) {
 
 	var Router = Backbone.Router.extend({
 
@@ -12,18 +13,16 @@ define([
 			'dashboard': 'dashboard'
 		},
 
+		initialize: function() {},
+
 		login: function() {},
 
-		dashboard: function() {
-			view = new Dashboard();
-			this.render(view);
-		},
+		dashboard: function() {	
 
-		render: function(view) {
-			if (this.currentView) this.currentview.close();
+			var projects = new ProjectCollection();
+			new ProjectsView({ collection: projects }).render();
 
-			this.currentview = view;
-			this.currentview.render();
+			new AppView({ collection: projects });
 		}
 
 	});

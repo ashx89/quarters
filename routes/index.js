@@ -20,6 +20,7 @@ module.exports = exports = function(app, db) {
 	app.get('/dashboard', sessionHandler.displayDashboard);
 
 	// API
-	app.get('/api/projects', apiHandler.getProjects);
+	app.get('/projects', apiHandler.getProjects);
+	app.post('/projects', sessionHandler.handleNewProject);
 
 };

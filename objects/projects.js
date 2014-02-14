@@ -8,7 +8,7 @@ function ProjectsDAO(db) {
 
 		var project = { title: title, date: new Date() };
 
-		projects.insert(project, function(err, doc) {
+		projects.insert(project, {safe: true}, function(err, doc) {
 			if (err) throw err;
 			console.log("New project created");
 			callback(err, doc);

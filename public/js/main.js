@@ -26,13 +26,8 @@ require.config({
 
 });
 
-require(['backbone', 'router'], function(Backbone, Router) {
+require(['js/app'], function(App) {
 
-	//new Router();
-
-    Backbone.history.start({
-        pushState: true,
-        root: '/'    
-    });
+	new App();
 
 });

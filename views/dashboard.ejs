@@ -28,28 +28,26 @@
 					</ul>
 				</nav>
 			</header>
+			<!-- End Header
+			============================================== -->
 
 			<div id="dashboard-body" class="clear">
 				<aside id="sidebar">
 					<section class="sidebar-module">
-						<div class="module-header clear">
+
+						<div class="module-header clear" id="newProjBtn">
 							<h2>Projects</h2>
 							<a id="add-new-project" href="#0" class="plus">+</a>
 						</div>
+						<!--# end add project -->
 
-						<div class="module-body">
-							<ul>
-								<% for (var i = 0; i < projects.length; i++) { %>
-								<li>
-									<a href="#0">
-										<i class="icon-project"></i>
-										<span><%= projects[i].title %></span>
-									</a>
-								</li>
-								<% } %>
-							</ul>
+						<div class="module-body" id="sidebar-module-projects">
+							<ul id="project-list"></ul>
 						</div>
+						<!--# end list of projects -->
+
 					</section>
+
 					<section class="sidebar-module">
 						<div class="module-header clear">
 							<h2>Team</h2>
@@ -66,7 +64,10 @@
 							</ul>
 						</div>
 					</section>
+					
 				</aside>
+				<!-- End Sidebar
+				============================================== -->
 
 				<section id="tasks">
 					<div class="tasks-header clear">
@@ -101,6 +102,8 @@
 						</ul>
 					</div>
 				</section>
+				<!-- End Tasks
+				============================================== -->
 
 				<section id="task">
 					<div class="task-header shadow-box clear">
@@ -187,9 +190,9 @@
 					<h4>New Project</h4>
 				</div>
 				<div id="modal-body">
-					<form id="new-project" class="clear">
-						<input type="text" class="input-single" placeholder="New Project..."/>
-						<button class="button button-green button-single">Add</button>
+					<form class="clear">
+						<input id="input-project-title" type="text" class="input-single" placeholder="New Project..."/>
+						<button class="button button-green button-single" id="btn-project-new">Add</button>
 					</form>
 				</div>
 				<!--<div id="modal-footer">
@@ -201,8 +204,7 @@
 
 	</div><!--end container-->
 	<!--<script src="js/app.min.js"></script>-->
-	<script data-main="js/main" src="js/libs/require.js"></script>
-<!--<script data-main="main" src="scripts/vendor/requirejs/require.js"></script>-->
+<script data-main="js/main" src="js/libs/require.js"></script>
 <script src="http://localhost:4000/livereload.js"></script>
 </body>
 </html>
