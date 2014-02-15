@@ -1,26 +1,44 @@
-var SessionHandler = require('./session')
-  , APIHandler = require('./api');
+var SessionHandler 	= require('./session')
+  , APIHandler 		= require('./api');
+  
 
 module.exports = exports = function(app, db) {
 
 	var sessionHandler = new SessionHandler(db);
 	var apiHandler 	   = new APIHandler(db);
 
-	// Middleware
+	/* ------------------------------------------------   
+     * Middleware
+     * ----------------------------------------------- */
 	app.use(sessionHandler.isLoggedIn);
 
-	// Login
+
+	/* ------------------------------------------------   
+     * Login
+     * ----------------------------------------------- */
 	app.get('/', sessionHandler.displayLogin);
 	app.post('/', sessionHandler.handleLogin);
 
-	// Signup
+
+	/* ------------------------------------------------   
+     * Signup
+     * ----------------------------------------------- */
 	app.get('/signup', sessionHandler.displaySignup);
 	app.post('/signup', sessionHandler.handleSignup);
 
+
+	/* ------------------------------------------------   
+     * Dashboard
+     * ----------------------------------------------- */
 	app.get('/dashboard', sessionHandler.displayDashboard);
 
-	// API
-	app.get('/projects', apiHandler.getProjects);
-	app.post('/projects', sessionHandler.handleNewProject);
+
+	/* ------------------------------------------------   
+     * REST API
+     * ----------------------------------------------- */
+	app.get('/project', apiHandler.getProjects);
+	app.get('/project/:id', apiHandler.getProject);
+
+	app.post('/project', apiHandler.handleNewProject);
 
 };

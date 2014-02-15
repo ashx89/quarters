@@ -4,7 +4,9 @@ function APIHandler(db) {
 
 	var projects = new ProjectsDAO(db);
 
-	// API calls made by client
+	/* ------------------------------------------------   
+     * Project GET
+     * ----------------------------------------------- */
 	this.getProjects = function(req, res) {
 
 		if (!req.username) res.redirect('/');
@@ -14,6 +16,36 @@ function APIHandler(db) {
 			return res.json(items);
 		});
 	};
+
+    this.getProject = function(req, res) {
+
+        if (!req.username) res.redirect('/');
+
+        var id = req.params.id;
+
+        projects.getProject(id, function(err, item) {
+            if (err) throw err;
+            return res.json(item);
+        });
+    };
+
+
+    /* ------------------------------------------------   
+     * Project POST
+     * ----------------------------------------------- */
+    this.handleNewProject = function(req, res, next) {
+
+        console.log("User submitted title: " + title);
+
+        var title = req.body.title;
+
+       projects.newProject(title, function(err, doc) {
+            if (err) return next(err);
+            console.log('new project added to collection');
+            res.send(doc[0]);
+        }); 
+
+    };
 
 };
 

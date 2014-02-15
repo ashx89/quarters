@@ -1,6 +1,7 @@
-var UserDAO = require('../objects/users').UserDAO
+var UserDAO     = require('../objects/users').UserDAO
   , ProjectsDAO = require('../objects/projects').ProjectsDAO
-  , SessionDAO = require('../objects/sessions').SessionDAO;
+  , SessionDAO  = require('../objects/sessions').SessionDAO;
+
 
  function SessionHandler(db) {
 
@@ -8,7 +9,9 @@ var UserDAO = require('../objects/users').UserDAO
     var sessions = new SessionDAO(db);
     var projects = new ProjectsDAO(db);
 
-    // Check logged in middleware
+    /* ------------------------------------------------   
+     * Middleware
+     * ----------------------------------------------- */
     this.isLoggedIn = function(req, res, next) {
 
         var sessionID = req.cookies.session;
@@ -20,7 +23,9 @@ var UserDAO = require('../objects/users').UserDAO
         });
     };
 
-
+    /* ------------------------------------------------   
+     * Login Requests
+     * ----------------------------------------------- */
     this.displayLogin = function(req, res, next) {
         if (req.username) res.redirect('/dashboard');
         return res.render('index', { username: "", password: "", login_error: "", isErrors: false});
@@ -46,16 +51,16 @@ var UserDAO = require('../objects/users').UserDAO
             }
 
             sessions.sessionStart(user['_id'], function(err, sessionID) {
-
                 if (err) return next(err);
-
                 res.cookie('session', sessionID);
                 return res.redirect('/dashboard');
             });
         });
     };
 
-
+    /* ------------------------------------------------   
+     * Logout Request
+     * ----------------------------------------------- */
     this.displayLogout = function(req, res, next) {
 
         var sessionID = req.cookies.session;
@@ -67,6 +72,9 @@ var UserDAO = require('../objects/users').UserDAO
     };
 
 
+    /* ------------------------------------------------   
+     * Signup Requests
+     * ----------------------------------------------- */
     this.displaySignup = function(req, res, next) {
         if (req.username) res.redirect('/dashboard');
         res.render('signup', {
@@ -101,9 +109,8 @@ var UserDAO = require('../objects/users').UserDAO
             errors['verify_error'] = "Passwords do not match.";
             errors['isErrors'] = true;
 
-        for (var name in errors) {
-            if (errors[name] !== "") return false;
-        }
+
+        if (errors['isError']) return false;
 
         return true;
     };
@@ -121,6 +128,7 @@ var UserDAO = require('../objects/users').UserDAO
         if (validateSignup(username, password, verify, errors)) {
 
             users.addUser(username, password, function(err, user) {
+
                 if (err) {
                     if (err.code == '11000') {
                         errors['username_error'] = "Username already in use.";
@@ -134,9 +142,7 @@ var UserDAO = require('../objects/users').UserDAO
                 }
 
                 sessions.sessionStart(user['_id'], function(err, sessionID) {
-
                     if (err) return next(err);
-
                     res.cookie('session', sessionID);
                     return res.redirect('/dashboard');
                 });
@@ -148,6 +154,10 @@ var UserDAO = require('../objects/users').UserDAO
         }
     };
 
+
+    /* ------------------------------------------------   
+     * Dashboard Requests
+     * ----------------------------------------------- */
     this.displayDashboard = function(req, res, next) {
 
         if (!req.username) {
@@ -165,22 +175,6 @@ var UserDAO = require('../objects/users').UserDAO
             });
         });
         
-    };
-
-
-
-    this.handleNewProject = function(req, res, next) {
-
-        console.log("User submitted title: " + title);
-
-        var title = req.body.title;
-
-       projects.newProject(title, function(err, doc) {
-            if (err) return next(err);
-            console.log('new project added to collection');
-            res.send(doc[0]);
-        }); 
-
     };
 
 };

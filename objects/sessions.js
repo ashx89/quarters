@@ -4,6 +4,9 @@ function SessionDAO(db) {
 
 	var sessions = db.collection('sessions');
 
+	/* ------------------------------------------------   
+     * Start Session
+     * ----------------------------------------------- */
 	this.sessionStart = function(username, callback) {
 
 		// Generate session id
@@ -20,29 +23,31 @@ function SessionDAO(db) {
 
 	};
 
+	/* ------------------------------------------------   
+     * End Session
+     * ----------------------------------------------- */
 	this.sessionEnd = function(sessionID, callback) {
 		session.remove({'_id': sessionID}, function(err, numRemoved) {
 			callback(err);
 		});
 	};
 
+
+	/* ------------------------------------------------   
+     * Helpers
+     * ----------------------------------------------- */
 	this.getUsername = function(sessionID, callback) {
 
 		if (!sessionID) {
 			callback(Error("Session not set"), null);
 			return;
 		}
-
+		
 		sessions.findOne({'_id': sessionID[0]._id}, function(err, session) {
-
 			if (err) return callback(err, null);
-
 			if (!session) return callback(new Error("Session: " + session + " does not exist"), null);
-
 			callback(null, session.username);
-
 		});
-
 	};
 
 };

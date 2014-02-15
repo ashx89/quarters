@@ -4,6 +4,9 @@ function UserDAO(db) {
 
 	var users = db.collection('users');
 
+	/* ------------------------------------------------   
+     * Add User
+     * ----------------------------------------------- */
 	this.addUser = function(username, password, callback) {
 
 		var salt = bcrypt.genSaltSync();
@@ -12,22 +15,20 @@ function UserDAO(db) {
 		var user = {'_id': username, 'password': password_hash};
 
 		users.insert(user, function(err, doc) {
-
 			if (err) return callback(err, null);
-
 			return callback(null, doc[0]);
-
 		});
 	};
 
-
+	/* ------------------------------------------------   
+     * Validate User
+     * ----------------------------------------------- */
 	this.validateLogin = function(username, password, callback) {
 
 		function validateDoc(err, user) {
 
 			if (err) return callback(err, null);
 
-			// Set up error object
 			var error = {};
 			error.message = [];
 
@@ -36,14 +37,15 @@ function UserDAO(db) {
 					callback(null, user);
 				}
 				else {
-					err.message.push(new Error("Invalid Password"));
-					err.password_error = true;
+					error.message.push(new Error("Invalid Password"));
+					error.password_error = true;
 					callback(error, null);
 				}
 			}
+
 			else {
-				err.message.push(new Error("User: " + user + " does not exists"));			
-				err.no_user_error = true;
+				error.message.push(new Error("User: " + user + " does not exists"));			
+				error.no_user_error = true;
 				callback(error, null);
 			}
 
@@ -52,6 +54,7 @@ function UserDAO(db) {
 		users.findOne({'_id': username}, validateDoc);
 
 	};
+
 
 };
 

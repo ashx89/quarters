@@ -1,9 +1,8 @@
-var express = require('express')
-    , app = express()
-    , Mongo = require('mongodb').MongoClient
-    , routes = require('./routes')
-    , path = require('path');
-    // , mongoose = require('mongoose'); - maybe mongoose?
+var express     = require('express')
+    , app       = express()
+    , Mongo     = require('mongodb').MongoClient
+    , routes    = require('./routes')
+    , path      = require('path');
 
 Mongo.connect('mongodb://localhost:27017/quarters', function(err, db) {
 
@@ -16,6 +15,9 @@ Mongo.connect('mongodb://localhost:27017/quarters', function(err, db) {
     app.use(express.bodyParser());
     app.use(express.static(path.join(__dirname, 'public')));
 
+    /* ------------------------------------------------   
+     * Routes
+     * ----------------------------------------------- */
     routes(app, db);
 
     app.listen(3000);
