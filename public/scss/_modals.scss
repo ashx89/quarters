@@ -17,7 +17,7 @@
 	z-index: 3000;
 }
 
-[id*='modal-'] {
+[class*='modal-'] {
 	padding: 10px;
 }
 
@@ -32,7 +32,7 @@
 	z-index: 5500;
 }
 
-#modal-header {
+.modal-header {
 	@include border-top-radius(3px);
 	background: $midgray;
 	& h4 {
@@ -46,22 +46,22 @@
 		}
 	}
 }
-#modal-body {
+.modal-body {
 	padding: 20px 10px;
 }
-#modal-footer {
+.modal-footer {
 	border-top: 1px solid $lightgray;
 }
 
 
-#new-project {
+#new-project-form {
 	width: 100%;
 	& input {
 		width: 400px;
 	}
 }
 
-#new-task {
+#new-task-form {
 	width: 100%;
 	& input[type=text] {
 		width: 400px;

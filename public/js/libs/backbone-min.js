@@ -14,3 +14,12 @@ Backbone.View.prototype.close = function() {
         subview.close();
     });
 };
+
+// Backbone.Collection = (function(Collection) {
+//    return Collection.extend({
+//         constructor: function(options) {
+//             this.options = options || {};
+//             Collection.apply(this, arguments);
+//         }
+//     });
+// })(Backbone.Collection);

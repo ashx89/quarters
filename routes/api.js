@@ -37,15 +37,33 @@ function APIHandler(db) {
 
         console.log("User submitted title: " + title);
 
+        var id = req.body.id;
         var title = req.body.title;
 
-       projects.newProject(title, function(err, doc) {
+       projects.newProject(id, title, function(err, doc) {
             if (err) return next(err);
             console.log('new project added to collection');
             res.send(doc[0]);
         }); 
 
     };
+
+
+    /* ------------------------------------------------   
+     * Task GET
+     * ----------------------------------------------- */
+    this.getTasks = function(req, res) {
+
+        if (!req.username) res.redirect('/');
+
+        var id = req.params.id;
+
+        projects.getTasks(id, function(err, tasks) {
+            if (err) throw err;
+            return res.json(tasks);
+        });
+    };
+
 
 };
 

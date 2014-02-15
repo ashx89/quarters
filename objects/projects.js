@@ -6,11 +6,11 @@ function ProjectsDAO(db) {
 	/* ------------------------------------------------   
      * New Project
      * ----------------------------------------------- */
-	this.newProject = function(title, callback) {
+	this.newProject = function(id, title, callback) {
 
 		console.log("creating a new project...");
 
-		var project = { title: title, date: new Date() };
+		var project = {_id: id, title: title, date: new Date() };
 
 		projects.insert(project, {safe: true}, function(err, doc) {
 			if (err) throw err;
@@ -34,11 +34,24 @@ function ProjectsDAO(db) {
      * Get Single Project - (can't find by objectID)
      * ----------------------------------------------- */
 	this.getProject = function(id, callback) {
-		projects.find({_id: ObjectID(id)}, function(err, item) {
+		projects.find({_id: id}, function(err, item) {
 			if (err) throw err;
 			callback(err, item);
 		});
 	};
+
+
+	/* ------------------------------------------------   
+     * Get All Tasks
+     * ----------------------------------------------- */
+	this.getTasks = function(id, callback) {
+		projects.findOne({_id: id}, function(err, docs) {
+			if (err) throw err;
+			//console.log("Found " + docs.tasks.length + " tasks");
+			callback(err, docs.tasks);
+		});
+	};
+
 
 };
 

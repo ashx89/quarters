@@ -21,7 +21,6 @@ define([
 
 			var projects = new ProjectCollection();
 			new ProjectsView({ collection: projects }).render();
-
 			new AppView({ collection: projects });
 		}
 

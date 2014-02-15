@@ -37,7 +37,7 @@
 
 						<div class="module-header clear" id="newProjBtn">
 							<h2>Projects</h2>
-							<a id="add-new-project" href="#0" class="plus">+</a>
+							<a id="add-new-project" href="#0" class="plus" data-target="project">+</a>
 						</div>
 						<!--# end add project -->
 
@@ -73,33 +73,11 @@
 					<div class="tasks-header clear">
 						<h3>Tasks in - <span>"Core Inc."</span></h3>
 						<a id="add-new-task" href="#0">
-							<i class="icon-new-item"></i>
+							<i class="icon-new-item" data-target="task"></i>
 						</a>
 					</div>
 					<div class="tasks-body">
-						<ul>
-							<li class="task-item clear">
-								<input type="checkbox" id="task_123" />
-								<label class="checkbox-label" for="task_123"></label>
-								<a href="#0" class="wrap">
-									<p class="task-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-								</a>
-							</li>
-							<li class="task-item clear">
-								<input type="checkbox" id="task_124" />
-								<label class="checkbox-label" for="task_124"></label>
-								<a href="#0" class="wrap">
-									<p class="task-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-								</a>
-							</li>
-							<li class="task-item clear">
-								<input type="checkbox" id="task_125" />
-								<label class="checkbox-label" for="task_125"></label>
-								<a href="#0" class="wrap">
-									<p class="task-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-								</a>
-							</li>
-						</ul>
+						<ul></ul>
 					</div>
 				</section>
 				<!-- End Tasks
@@ -186,12 +164,12 @@
 		<!--Modal goes here-->
 		<div class="modal hidden" data-modal="new-project">
 			<div class="modal-container">
-				<div id="modal-header">
+				<div class="modal-header">
 					<h4>New Project</h4>
 				</div>
-				<div id="modal-body">
-					<form class="clear">
-						<input id="input-project-title" type="text" class="input-single" placeholder="New Project..."/>
+				<div class="modal-body">
+					<form id="new-project-form" class="clear">
+						<input id="input-project-title" type="text" class="input-single" placeholder="Project Name..."/>
 						<button class="button button-green button-single" id="btn-project-new">Add</button>
 					</form>
 				</div>
@@ -202,6 +180,9 @@
 			<div class="modal-overlay"></div>
 		</div><!--end modal-->
 
+		
+
+
 	</div><!--end container-->
 
 	<script type="text/template" id="project-list-template">
@@ -211,6 +192,58 @@
 				<span>{{ title }}</span>
 			</a>
 		</li>
+	</script>
+
+	<script type="text/template" id="task-modal-template">
+		<div class="modal" data-modal="new-task">
+			<div class="modal-container">
+				<div class="modal-header">
+					<h4>New Task <span>:: {{ title }}.</span></h4>
+				</div>
+				<div class="modal-body">
+					<form id="new-task-form" class="clear">
+						<input type="text" placeholder="Task Name" class="input-single" />
+						<button class="button button-green button-single">Add</button>
+
+						<section id="task-meta">
+							<div class="task-info clear">
+								<i class="icon-avatar-black"></i>
+								<div class="label">
+									<span>assign to:</span>
+									<select id="team-list">
+										<option>Ashley</option>
+										<option>Ashley</option>
+										<option>Ashley</option>
+									</select>
+								</div>
+							</div>
+							<div class="task-info clear">
+								<i class="icon-calendar"></i>
+								<div class="label">
+									<span>set end date:</span>
+									<input type="text" placeholder="dd/mm/yyyy" />
+								</div>
+							</div>
+							<div class="task-info clear">
+								<i class="icon-tags"></i>
+								<div class="label">
+									<span>tags:</span>
+									<input type="text" placeholder="design, html, business" />
+								</div>
+							</div>
+							<div class="task-info clear">
+								<i class="icon-subtasks"></i>
+								<div class="label">
+									<span>subtasks:</span>
+									<h4>coming soon...</h4>
+								</div>
+							</div>
+						</section>
+					</form>
+				</div><!--end modal body-->
+			</div><!--end modal container-->
+			<div class="modal-overlay"></div>
+		</div><!--end modal-->
 	</script>
 
 	<!--<script src="js/app.min.js"></script>-->
