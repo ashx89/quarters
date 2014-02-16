@@ -42,25 +42,25 @@
 	& ul {
 		& li {
 			display: block;
+			&:hover {
+				background: black;
+			}
 			& a {
-				display: inherit;
+				float: right;
+				padding: 10px 0;
+				display: inline-block;
 				height: inherit;
+				width: 75%;
 				font-size: 13px;
 				color: $lightgray;
 				position: relative;
-				&:hover {
-					background: black;
-				}
-				& span {
-					text-indent: 40px;
-					display: inline-block;
-					height: inherit;
-					margin: 10px 0;
-				}
-				& i {
-					top: 6px;
-					display: inline-block;
-				}
+				text-indent: 10px;
+			}
+			& i {
+				float: left;
+				margin-top: 6px;
+				margin-left: 5px;
+				display: inline-block;
 			}
 
 		}
@@ -109,6 +109,18 @@
 			color: black;
 		}
 	}
+}
+
+.completed-true {
+	opacity: 0.3;
+}
+
+.completed-true input[type=checkbox] + label {
+	background-position: -194px 0;
+}
+
+.completed-true .task-item-title {
+	text-decoration: line-through;
 }
 
 /*=========================== TASK

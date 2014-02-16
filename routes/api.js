@@ -35,22 +35,19 @@ function APIHandler(db) {
      * ----------------------------------------------- */
     this.handleNewProject = function(req, res, next) {
 
-        console.log("User submitted title: " + title);
-
-        var id = req.body.id;
+        var id    = req.body.id;
         var title = req.body.title;
 
        projects.newProject(id, title, function(err, doc) {
             if (err) return next(err);
-            console.log('new project added to collection');
-            res.send(doc[0]);
+            res.json(doc[0]);
         }); 
 
     };
 
 
     /* ------------------------------------------------   
-     * Task GET
+     * Tasks
      * ----------------------------------------------- */
     this.getTasks = function(req, res) {
 
@@ -60,8 +57,34 @@ function APIHandler(db) {
 
         projects.getTasks(id, function(err, tasks) {
             if (err) throw err;
+            if (tasks == null) return;
             return res.json(tasks);
         });
+    };
+
+    this.handleNewTask = function(req, res, next) {
+
+        var pid   = req.body.projectid;
+        var id    = req.body.id;
+        var title = req.body.title;
+
+        projects.newTask(pid, id, title, function(err, doc) {
+            if (err) return next(err);
+            return res.json(doc.tasks[0]);
+        }); 
+
+    };
+
+    this.updateTask = function(req, res, next) {
+
+        var id     = req.body._id;
+        var status = req.body.completed;
+
+        projects.updateTask(id, status, function(err, doc) {
+            if (err) return next(err);
+            return res.json(doc.tasks[0]);
+        }); 
+
     };
 
 

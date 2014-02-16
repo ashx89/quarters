@@ -77,9 +77,6 @@ input[type=checkbox] + label {
 	cursor: pointer;
 	vertical-align: middle;
 }
-input[type=checkbox]:checked + label {
-	background-position: -194px 0;
-}
 
 input[type=date] {
 	width: 200px;

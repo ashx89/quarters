@@ -13,7 +13,7 @@ define([
             /* Add new project events
             ------------------------------------------------ */
             'click #add-new-project': 'openModal',
-            'click .modal-overlay':   'closeModal',
+            'click [data-modal="new-project"] .modal-overlay':   'closeModal',
             'click #btn-project-new': 'addProject'
 
             /* Add new task events
@@ -27,16 +27,10 @@ define([
         /* -----------------------------------------------------------------
          * Add New Project Methods
          * ----------------------------------------------------------------- */
-
-        setModal: function(modal) {
-            this.modal = $('[data-modal="new-'+modal+'"]');
-            this.modal.removeClass('hidden');
-        },
-
         openModal: function(e) {
             e.preventDefault();
-            var target = $(e.target).data('target');
-            this.setModal(target);
+            this.modal = $('[data-modal="new-project"]');
+            this.modal.removeClass('hidden');
         },
 
         closeModal: function() {

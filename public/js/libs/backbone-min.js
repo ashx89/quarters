@@ -15,11 +15,11 @@ Backbone.View.prototype.close = function() {
     });
 };
 
-// Backbone.Collection = (function(Collection) {
-//    return Collection.extend({
-//         constructor: function(options) {
-//             this.options = options || {};
-//             Collection.apply(this, arguments);
-//         }
-//     });
-// })(Backbone.Collection);
+Backbone.View = (function(View) {
+   return View.extend({
+        constructor: function(options) {
+            this.options = options || {};
+            View.apply(this, arguments);
+        }
+    });
+})(Backbone.View);

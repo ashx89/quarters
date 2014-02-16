@@ -42,6 +42,8 @@ module.exports = exports = function(app, db) {
 	app.post('/project', apiHandler.handleNewProject);
 
     app.get('/project/:id/tasks', apiHandler.getTasks);
-    //app.post('/task', apiHandler.handleNewTask);
+    app.post('/project/:id/tasks', apiHandler.handleNewTask);
+
+    app.put('/project/:id/tasks/:tid', apiHandler.updateTask);
 
 };

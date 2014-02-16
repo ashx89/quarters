@@ -10,7 +10,7 @@ function ProjectsDAO(db) {
 
 		console.log("creating a new project...");
 
-		var project = {_id: id, title: title, date: new Date() };
+		var project = {_id: id, title: title, date: new Date(), tasks: [] };
 
 		projects.insert(project, {safe: true}, function(err, doc) {
 			if (err) throw err;
@@ -47,9 +47,51 @@ function ProjectsDAO(db) {
 	this.getTasks = function(id, callback) {
 		projects.findOne({_id: id}, function(err, docs) {
 			if (err) throw err;
-			//console.log("Found " + docs.tasks.length + " tasks");
+			if (docs == null) return callback(err, null);
 			callback(err, docs.tasks);
 		});
+	};
+
+	/* ------------------------------------------------   
+     * New Task
+     * ----------------------------------------------- */
+	this.newTask = function(pid, id, title, callback) {
+
+		console.log("creating a new task...");
+
+		var query 	 = {_id: pid};
+		var task 	 = {_id: id, title: title, date: new Date(), completed: false };
+		var operator = {$push: {tasks: task}};
+
+		projects.findAndModify(query, {}, operator, {new: true, remove: false}, function(err, doc) {
+			if (err) throw err;
+			console.log("New task created");
+
+			projects.findOne(query, {'tasks': {$elemMatch: {_id: id}}}, function(err, doc) {
+				if (err) throw err;
+
+				callback(err, doc);
+
+				task = {};
+			})
+		});
+	};
+
+	/* ------------------------------------------------   
+     * New Task
+     * ----------------------------------------------- */
+	this.updateTask = function(id, status, callback) {
+
+		var operator = {$set: {'tasks.$.completed': status}};
+
+		projects.findAndModify({'tasks._id': id}, {}, operator, {new: true, remove: false}, function(err, doc) {
+			if (err) throw err;
+
+			projects.findOne({}, {'tasks': {$elemMatch: {_id: id}}}, function(err, doc) {
+				if (err) throw err;
+				callback(err, doc);
+			})
+		})
 	};
 
 

@@ -55,11 +55,9 @@
 						</div>
 						<div class="module-body">
 							<ul>
-								<li>
-									<a href="#0">
-										<i class="icon-avatar"></i>
-										<span><%= username %></span>
-									</a>
+								<li class="project-item clear">
+									<i class="icon-avatar"></i>
+									<a href="#0" data-id="{{ _id }}"><%= username %></a>
 								</li>
 							</ul>
 						</div>
@@ -70,15 +68,8 @@
 				============================================== -->
 
 				<section id="tasks">
-					<div class="tasks-header clear">
-						<h3>Tasks in - <span>"Core Inc."</span></h3>
-						<a id="add-new-task" href="#0">
-							<i class="icon-new-item" data-target="task"></i>
-						</a>
-					</div>
-					<div class="tasks-body">
-						<ul></ul>
-					</div>
+					<div id="tasks-container"></div>
+					<div id="tasks-modal-container"></div>
 				</section>
 				<!-- End Tasks
 				============================================== -->
@@ -202,8 +193,8 @@
 				</div>
 				<div class="modal-body">
 					<form id="new-task-form" class="clear">
-						<input type="text" placeholder="Task Name" class="input-single" />
-						<button class="button button-green button-single">Add</button>
+						<input type="text" placeholder="Task Name" class="input-single" id="input-task-title" />
+						<button id="btn-task-new" class="button button-green button-single">Add</button>
 
 						<section id="task-meta">
 							<div class="task-info clear">

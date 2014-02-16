@@ -1,11 +1,10 @@
 define([
     'backbone',
-    'js/models/project',
     'text!templates/project.html',
     'js/collections/tasks',
-    'js/views/tasks'
+    'js/views/tasksView',
 
-], function(Backbone, ProjectModel, ProjectTemplate, TasksCollection, TasksView) {
+], function(Backbone, ProjectTemplate, TasksCollection, TasksContainerView) {
 
     var ProjectView = Backbone.View.extend({
 
@@ -25,10 +24,8 @@ define([
         showTasks: function(e) {
             e.preventDefault();
 
-            this.projectId = this.model.id;
-
-            this.tasks = new TasksCollection([], {id: this.projectId});
-            new TasksView({ collection: this.tasks }).render();
+            var pid = $(e.target).data('id');
+            new TasksContainerView([], {pid: pid, model: this.model}).render();
         }
 
     });

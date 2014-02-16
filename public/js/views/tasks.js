@@ -7,11 +7,8 @@ define([
 
     var TasksView = Backbone.View.extend({
 
-        el: '.tasks-body ul',
-
         initialize: function() {
             this.collection.on('add', this.addOne, this);
-            this.collection.fetch();
         },
 
         render: function() {
