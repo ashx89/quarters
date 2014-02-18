@@ -23,3 +23,5 @@ Backbone.View = (function(View) {
         }
     });
 })(Backbone.View);
+
+Backbone.View.prototype.subviews = [];
