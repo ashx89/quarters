@@ -1,55 +1,26 @@
 define([
     'backbone',
-    'js/models/project',
-    'js/events/events'
+    'js/views/ProjectView'
 
-], function(Backbone, ProjectModel, Events) {
+], function(Backbone, ProjectView) {
 
     var AppView = Backbone.View.extend({
 
         el: 'body',
 
-        events: {
-            /* Add new project events
-            ------------------------------------------------ */
-            'click #add-new-project': 'openModal',
-            'click [data-modal="new-project"] .modal-overlay':   'closeModal',
-            'click #btn-project-new': 'addProject'
-
-            /* Add new task events
-            ------------------------------------------------ */
-        },
-
         initialize: function() {
-            _.bindAll(this, 'openModal', 'closeModal', 'addProject');
+
+            this.projectView = new ProjectView();
+
+            this.subviews.push(this.projectView);
         },
 
-        /* -----------------------------------------------------------------
-         * Add New Project Methods
-         * ----------------------------------------------------------------- */
-        openModal: function(e) {
-            e.preventDefault();
-            this.modal = $('[data-modal="new-project"]');
-            this.modal.removeClass('hidden');
-        },
+        render: function() {},
 
-        closeModal: function() {
-            this.modal.addClass('hidden')
-        },
+        subRender: function() {
 
+            this.projectView.render().el;
 
-        /* Add new project
-        ------------------------------------------------ */
-        addProject: function(e) {
-            e.preventDefault();
-
-            var project = {
-                id: new Date().getTime().toString(),
-                title: document.getElementById('input-project-title').value
-            };
-
-            this.collection.create(project, {wait: true});
-            this.modal.addClass('hidden')
         }
 
     });

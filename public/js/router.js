@@ -2,7 +2,8 @@ define([
 	'backbone',
 	'js/collections/projects',
 	'js/views/projects',
-	'js/views/appView'
+	//'js/views/app-View',
+	'js/views/AppView'
 
 ], function(Backbone, ProjectCollection, ProjectsView, AppView) {
 
@@ -19,9 +20,11 @@ define([
 
 		dashboard: function() {	
 
-			var projects = new ProjectCollection();
-			new ProjectsView({ collection: projects }).render();
-			new AppView({ collection: projects });
+			new AppView();
+
+			// var projects = new ProjectCollection();
+			// new ProjectsView({ collection: projects }).render();
+			//new appview({ collection: projects });
 		}
 
 	});

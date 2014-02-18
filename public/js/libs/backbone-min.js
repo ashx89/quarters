@@ -25,3 +25,13 @@ Backbone.View = (function(View) {
 })(Backbone.View);
 
 Backbone.View.prototype.subviews = [];
+
+Backbone.View.prototype.close = function() {
+
+    this.remove();
+    this.unbind();
+
+    _.each(this.subviews, function(subview) {
+        subview.close();
+    });
+};

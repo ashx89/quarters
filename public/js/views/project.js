@@ -2,7 +2,7 @@ define([
     'backbone',
     'text!templates/project.html',
     'js/collections/tasks',
-    'js/views/tasksView',
+    'js/views/tasks-View',
 
 ], function(Backbone, ProjectTemplate, TasksCollection, TasksContainerView) {
 
