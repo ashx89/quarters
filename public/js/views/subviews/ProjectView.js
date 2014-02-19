@@ -1,9 +1,10 @@
 define([
     'backbone',
+    'js/events/events',
     'text!templates/project.html',
     'js/views/subviews/TasksListView',
 
-], function(Backbone, ProjectTemplate, TasksListView) {
+], function(Backbone, Events, ProjectTemplate, TasksListView) {
 
     var ProjectView = Backbone.View.extend({
 
@@ -16,7 +17,7 @@ define([
         initialize: function() {},
 
         render: function() {
-            this.$el.html(this.template(this.model.toJSON()));
+            this.$el.html(this.template( this.model.toJSON() ));
             return this;
         },
 
@@ -24,7 +25,9 @@ define([
             e.preventDefault();
 
             var pid = $(e.target).data('id');
-            new TasksListView([], {pid: pid, model: this.model}).render()
+
+            Events.trigger('TasksListView', pid);
+            // new TasksListView([], {pid: pid, model: this.model}).render()
         }
 
     });

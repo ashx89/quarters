@@ -17,20 +17,14 @@ define([
             'click #btn-task-new':  'newTask'
         },
 
-        initialize: function() {
+        initialize: function(options) {
 
-            this.taskList = new TasksListView({ el: '#tasks-container', collection: new Tasks() });
+            this.tasksList = new TasksListView({ collection: new Tasks([], {id: options.projectId}) });
             
             this.subviews.push(this.taskList);
         },
 
-        render: function() {},
-
-        subRender: function() {
-
-            this.$el.append(this.taskList.render().el);
-
-        }
+        render: function() {}
 
     });
 

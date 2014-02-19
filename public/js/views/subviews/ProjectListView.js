@@ -6,6 +6,8 @@ define([
 
     var ProjectListView = Backbone.View.extend({
 
+        el: '#project-list',
+
         initialize: function() {
             this.collection.on('add', this.addOne, this);
             this.collection.fetch();

@@ -1,11 +1,9 @@
 define([
 	'backbone',
 	'js/collections/projects',
-	'js/views/projects',
-	//'js/views/app-View',
 	'js/views/AppView'
 
-], function(Backbone, ProjectCollection, ProjectsView, AppView) {
+], function(Backbone, ProjectCollection, AppView) {
 
 	var Router = Backbone.Router.extend({
 

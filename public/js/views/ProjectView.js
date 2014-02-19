@@ -1,9 +1,10 @@
 define([
     'backbone',
+    'js/events/events',
     'js/collections/projects',
     'js/views/subviews/ProjectListView'
 
-], function(Backbone, Projects, ProjectListView) {
+], function(Backbone, Events, Projects, ProjectListView) {
 
     var ProjectView = Backbone.View.extend({
 
@@ -17,19 +18,13 @@ define([
 
         initialize: function() {
 
-            this.projectList = new ProjectListView({ el: '#project-list', collection: new Projects() });
-            
+            this.projectList = new ProjectListView({ collection: new Projects() });
             this.subviews.push(this.projectList);
-            this.subRender();
+            
+            //this.subRender();
         },
 
-        render: function() {},
-
-        subRender: function() {
-
-            this.projectList.render().el;
-
-        }
+        render: function() {}
 
     });
 
