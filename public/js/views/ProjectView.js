@@ -17,13 +17,22 @@ define([
         },
 
         initialize: function() {
-
             this.projectList = new ProjectListView({ collection: new Projects() });
             this.subviews.push(this.projectList);
         },
 
-        newProject: function() {
+        newProject: function(e) {
+            e.preventDefault();
 
+            console.log('new')
+
+            var project = {
+                id: new Date().getTime().toString(),
+                title: document.getElementById('input-project-title').value
+            };
+
+            Projects.create(project, {wait: true});
+            $('[data-modal="new-project').addClass('hidden')
         },
 
         openModal: function(e) {
