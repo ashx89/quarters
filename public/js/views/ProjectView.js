@@ -20,8 +20,19 @@ define([
 
             this.projectList = new ProjectListView({ collection: new Projects() });
             this.subviews.push(this.projectList);
-            
-            //this.subRender();
+        },
+
+        newProject: function() {
+
+        },
+
+        openModal: function(e) {
+            e.preventDefault();
+            $('[data-modal="new-project').removeClass('hidden');
+        },
+
+        closeModal: function() {
+            $('[data-modal="new-project').addClass('hidden');
         },
 
         render: function() {}

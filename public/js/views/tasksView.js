@@ -20,11 +20,18 @@ define([
         initialize: function(options) {
 
             this.tasksList = new TasksListView({ collection: new Tasks([], {id: options.projectId}) });
-            
             this.subviews.push(this.taskList);
+
+            this.subRender(options);
         },
 
-        render: function() {}
+        render: function() {},
+
+        subRender: function(options) {
+
+            $('#tasks-container .tasks-header').show().find('h3').html(options.projectTitle)
+            $('#tasks-container .tasks-body ul').html(this.tasksList.render().el)
+        }
 
     });
 

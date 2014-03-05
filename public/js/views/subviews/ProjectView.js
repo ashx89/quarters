@@ -24,9 +24,10 @@ define([
         showTasks: function(e) {
             e.preventDefault();
 
-            var pid = $(e.target).data('id');
+            var pid   = $(e.target).data('id');
+            var title = $(e.target).data('title');
 
-            Events.trigger('TasksListView', pid);
+            Events.trigger('TasksListView', {pid: pid, title: title});
             // new TasksListView([], {pid: pid, model: this.model}).render()
         }
 

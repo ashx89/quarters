@@ -21,8 +21,8 @@ define([
 
         render: function() {},
 
-        tasksRender: function(id) {
-            this.tasksView = new TasksView({ projectId: id});
+        tasksRender: function(obj) {
+            this.tasksView = new TasksView({ projectId: obj.pid, projectTitle: obj.title});
             this.subviews.push(this.tasksView);
         }
 
