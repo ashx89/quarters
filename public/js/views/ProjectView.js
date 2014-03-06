@@ -17,31 +17,35 @@ define([
         },
 
         initialize: function() {
-            this.projectList = new ProjectListView({ collection: new Projects() });
+
+            _.bindAll(this, 'newProject', 'openModal', 'closeModal');
+
+            this.modal       = $('[data-modal="new-project');
+            this.collection  = new Projects();
+            this.projectList = new ProjectListView({ collection: this.collection });
+
             this.subviews.push(this.projectList);
         },
 
         newProject: function(e) {
             e.preventDefault();
 
-            console.log('new')
-
             var project = {
-                id: new Date().getTime().toString(),
+                id:    new Date().getTime().toString(),
                 title: document.getElementById('input-project-title').value
             };
 
-            Projects.create(project, {wait: true});
-            $('[data-modal="new-project').addClass('hidden')
+            this.collection.create(project, {wait: true});
+            this.modal.addClass('hidden');
         },
 
         openModal: function(e) {
             e.preventDefault();
-            $('[data-modal="new-project').removeClass('hidden');
+            this.modal.removeClass('hidden');
         },
 
         closeModal: function() {
-            $('[data-modal="new-project').addClass('hidden');
+            this.modal.addClass('hidden');
         },
 
         render: function() {}
