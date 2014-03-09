@@ -26,6 +26,7 @@ define([
             var value = (this.model.get('completed') == false) ? true : false;
             this.model.set('completed', value);
             this.model.save();
+            console.log(this.model)
         }
 
     });

@@ -69,9 +69,7 @@ function ProjectsDAO(db) {
 
 			projects.findOne(query, {'tasks': {$elemMatch: {_id: id}}}, function(err, doc) {
 				if (err) throw err;
-
 				callback(err, doc);
-
 				task = {};
 			})
 		});
@@ -82,16 +80,18 @@ function ProjectsDAO(db) {
      * ----------------------------------------------- */
 	this.updateTask = function(id, status, callback) {
 
+		var id = id.toString();
 		var operator = {$set: {'tasks.$.completed': status}};
 
-		projects.findAndModify({'tasks._id': id}, {}, operator, {new: true, remove: false}, function(err, doc) {
-			if (err) throw err;
+		projects.update({'tasks._id': id}, operator, {'upsert': false}, function(err, doc) {
 
-			projects.findOne({}, {'tasks': {$elemMatch: {_id: id}}}, function(err, doc) {
+			projects.findOne({'tasks._id': id}, {'tasks.$': 1}, function(err, doc) {
 				if (err) throw err;
+				console.log('fo----------------', doc);
 				callback(err, doc);
-			})
-		})
+			});
+			
+		});
 	};
 
 
