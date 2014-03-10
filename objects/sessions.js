@@ -27,7 +27,7 @@ function SessionDAO(db) {
      * End Session
      * ----------------------------------------------- */
 	this.sessionEnd = function(sessionID, callback) {
-		session.remove({'_id': sessionID}, function(err, numRemoved) {
+		sessions.remove({'_id': sessionID}, function(err, numRemoved) {
 			callback(err);
 		});
 	};

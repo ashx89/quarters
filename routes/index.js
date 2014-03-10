@@ -31,13 +31,16 @@ module.exports = exports = function(app, db) {
      * Dashboard
      * ----------------------------------------------- */
 	app.get('/dashboard', sessionHandler.displayDashboard);
-
+    app.get('/dashboard/logout', sessionHandler.displayLogout);
 
 	/* ------------------------------------------------   
      * REST API
      * ----------------------------------------------- */
 	app.get('/project', apiHandler.getProjects);
 	app.get('/project/:id', apiHandler.getProject);
+
+    app.get('/project/:id/users', apiHandler.getUsers);
+    app.post('/project/:id/users', apiHandler.handleNewUser);
 
 	app.post('/project', apiHandler.handleNewProject);
 

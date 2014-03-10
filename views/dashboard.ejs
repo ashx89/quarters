@@ -22,7 +22,7 @@
 							</a>
 							<ul class="dropdown">
 								<li><a href="#0" class="">Settings</a></li>
-								<li><a href="#0" class="">Logout</a></li>
+								<li><a href="/dashboard/logout" class="">Logout</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -49,15 +49,12 @@
 					<section class="sidebar-module">
 						<div class="module-header clear">
 							<h2>Team</h2>
-							<a href="#0" class="plus">+</a>
+							<a id="add-new-team" href="#0" class="plus" data-target="team">+</a>
 						</div>
 						<div class="module-body">
-							<ul>
-								<li class="project-item clear">
-									<i class="icon-avatar"></i>
-									<a href="#0" data-id="{{ _id }}"><%= username %></a>
-								</li>
-							</ul>
+
+							<ul id="user-list"></ul>
+							
 						</div>
 					</section>
 					
@@ -79,6 +76,27 @@
 						</div>
 						<div class="modal-overlay"></div>
 					</div><!--end modal-->
+
+					<!--Modal goes here-->
+					<div class="modal hidden" data-modal="new-team" >
+						<div class="modal-container">
+							<div class="modal-header">
+								<h4>New Team Member</h4>
+							</div>
+							<div class="modal-body">
+								<form id="new-team-form" class="clear">
+									<input id="input-team-username" type="text" class="input-single" placeholder="Team Member Username..."/>
+									<button class="button button-green button-single" id="btn-new-team">Add</button>
+								</form>
+							</div>
+							<!--<div id="modal-footer">
+								<p>Footer</p>
+							</div>-->
+						</div>
+						<div class="modal-overlay"></div>
+					</div><!--end modal-->
+
+
 					
 				</aside>
 				<!-- End Sidebar
@@ -143,7 +161,7 @@
 		    <div class="comment">
 		        <div class="comment-header clear">
 		            <h5>{{ author }}</h5>
-		            <time>2 days ago</time>
+		            <abbr class="timeago" title="{{ date }}"></abbr>
 		        </div>
 		        <p>{{ text }}</p>
 		    </div>
@@ -203,9 +221,7 @@
 								<div class="label">
 									<span>assign to:</span>
 									<select id="team-list">
-										<option>Ashley</option>
-										<option>Ashley</option>
-										<option>Ashley</option>
+										<option>coming soon</option>
 									</select>
 								</div>
 							</div>

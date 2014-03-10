@@ -11,7 +11,7 @@ function APIHandler(db) {
 
 		if (!req.username) res.redirect('/');
 
-		projects.getProjects(0, function(err, items) {
+		projects.getProjects(req.username, 0, function(err, items) {
 			if (err) throw err;
 			return res.json(items);
 		});
@@ -29,20 +29,39 @@ function APIHandler(db) {
         });
     };
 
-
-    /* ------------------------------------------------   
-     * Project POST
-     * ----------------------------------------------- */
     this.handleNewProject = function(req, res, next) {
 
         var id    = req.body.id;
         var title = req.body.title;
+        var user  = req.username;
 
-       projects.newProject(id, title, function(err, doc) {
+       projects.newProject(id, title, user, function(err, doc) {
             if (err) return next(err);
             res.json(doc[0]);
         }); 
+    };
 
+    this.getUsers = function(req, res) {
+
+        if (!req.username) res.redirect('/');
+
+        var pid = req.params.id;
+
+        projects.getUsers(pid, function(err, doc) {
+            if (err) throw err;
+            return res.json(doc[0].user);
+        });
+    };
+
+    this.handleNewUser = function(req, res, next) {
+
+        var id       = req.params.id;
+        var username = req.body.username;
+
+       projects.newUser(id, username, function(err, doc) {
+            if (err) return next(err);
+            res.json(doc[0]);
+        }); 
     };
 
 

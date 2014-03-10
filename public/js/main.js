@@ -21,12 +21,13 @@ require.config({
 		underscore: 'js/libs/underscore-min',
 		text: 		'js/libs/requirejs-text',
 
+		timeago:    'js/libs/timeago',
 		router: 	'js/router'
 	}
 
 });
 
-require(['js/app'], function(App) {
+require(['js/app', 'timeago'], function(App, timeago) {
 
 	new App();
 

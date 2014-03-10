@@ -19,17 +19,16 @@ define([
         },
 
         initialize: function() {
-
             this.subviews = [];
             _.bindAll(this, 'newTask', 'openModal', 'closeModal');
         },
 
         render: function(options) {
 
-            this.projectId   = options.projectId;
+            this.projectId  = options.projectId;
 
-            this.collection  = new Tasks([], {id: options.projectId});
-            this.tasksList   = new TasksListView({ collection: this.collection });
+            this.collection = new Tasks([], {id: options.projectId});
+            this.tasksList  = new TasksListView({ collection: this.collection });
 
             this.subviews.push(this.tasksList);
             this.subRender(options);
@@ -40,12 +39,12 @@ define([
             e.preventDefault();
 
             var task = {
-                projectid: this.projectId,
                 id:        new Date().getTime().toString(),
-                title:     $('#input-task-title').val(),
                 tags:      $('#input-tags').val(),
+                title:     $('#input-task-title').val(),
                 deadline:  $('#input-end-date').val(),
-                completed: false
+                completed: false,
+                projectid: this.projectId
             };
 
             this.collection.create(task, {wait: true});

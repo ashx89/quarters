@@ -53,9 +53,9 @@ define([
             e.preventDefault();
 
             var comment = {
-                taskId: this.task.id,
-                id: new Date().getTime().toString(),
-                text: $('#comment').val()
+                id:     new Date().getTime().toString(),
+                text:   $('#comment').val(),
+                taskId: this.task.id
             };
 
             this.collection.create(comment, {wait: true});

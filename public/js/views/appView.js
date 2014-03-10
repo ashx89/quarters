@@ -11,6 +11,10 @@ define([
 
         el: 'body',
 
+        events: {
+            'click #nav #nav-settings': 'showOptions'
+        },
+
         initialize: function() {
 
             this.subviews = [];
@@ -37,6 +41,10 @@ define([
 
         taskRender: function(obj) {
             this.taskView.render({task: obj.task})
+        },
+
+        showOptions: function() {
+            $('.dropdown').toggle();
         }
 
     });

@@ -6,11 +6,11 @@ function ProjectsDAO(db) {
 	/* ------------------------------------------------   
      * New Project
      * ----------------------------------------------- */
-	this.newProject = function(id, title, callback) {
+	this.newProject = function(id, title, user, callback) {
 
 		console.log("creating a new project...");
 
-		var project = {_id: id, title: title, date: new Date(), tasks: [] };
+		var project = {_id: id, title: title, user: [{'username': user}], date: new Date(), tasks: [] };
 
 		projects.insert(project, {safe: true}, function(err, doc) {
 			if (err) throw err;
@@ -22,8 +22,8 @@ function ProjectsDAO(db) {
 	/* ------------------------------------------------   
      * Get All Projects
      * ----------------------------------------------- */
-	this.getProjects = function(num, callback) {
-		projects.find().sort('date', -1).limit(num).toArray(function(err, items) {
+	this.getProjects = function(user, num, callback) {
+		projects.find({'user.username': {'$in': [user]}}).sort('date', -1).limit(num).toArray(function(err, items) {
 			if (err) throw err;
 			console.log("Found " + items.length + " projects");
 			callback(err, items);
@@ -37,6 +37,34 @@ function ProjectsDAO(db) {
 		projects.find({_id: id}, function(err, item) {
 			if (err) throw err;
 			callback(err, item);
+		});
+	};
+
+
+	this.getUsers = function(pid, callback) {
+		projects.find({_id: pid}).toArray(function(err, doc) {
+			if (err) throw err;
+			callback(err, doc);
+		});
+	};
+
+
+	this.newUser = function(pid, username, callback) {
+
+		console.log("adding a new team member...");
+
+		var query 	 = {'_id': pid};
+		var user  = { username: username };
+						
+		var operator = {'$push': {'user': user}};
+
+		projects.update(query, operator, {'upsert': false}, function(err, doc) {
+
+			projects.findOne({'_id': pid}, {'user.$': 1}, function(err, doc) {
+				if (err) throw err;
+				callback(err, doc);
+			});
+			
 		});
 	};
 

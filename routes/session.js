@@ -64,7 +64,6 @@ var UserDAO     = require('../objects/users').UserDAO
     this.displayLogout = function(req, res, next) {
 
         var sessionID = req.cookies.session;
-
         sessions.sessionEnd(sessionID, function(err) {
             res.cookie('session', '');
             return res.redirect('/');
@@ -97,21 +96,24 @@ var UserDAO     = require('../objects/users').UserDAO
         errors['password_error'] = "";
         errors['verify_error']   = "";
 
-        if (!USER_REGX.test(username) || !username)
+        if (!USER_REGX.test(username) || !username.length) {
             errors['username_error'] = "Invalid username. Please use only letters and numbers";
             errors['isErrors'] = true;
+        }
 
-        if (!PASS_REGX.test(password) || !password)
+        if (!PASS_REGX.test(password) || !password.length) {
             errors['password_error'] = "Invalid password.";
             errors['isErrors'] = true;
+        }
 
-        if (password != verify || !verify)
+        if (password != verify || !verify.length) {
             errors['verify_error'] = "Passwords do not match.";
             errors['isErrors'] = true;
+        }
 
+        if (errors['isErrors']) return false;
 
-        if (errors['isError']) return false;
-
+        errors['isErrors'] = false;
         return true;
     };
 
@@ -165,7 +167,7 @@ var UserDAO     = require('../objects/users').UserDAO
             return res.redirect('/');
         }
 
-        projects.getProjects(5, function(err, items) {
+        projects.getProjects(req.username, 5, function(err, items) {
             if (err) throw err;
 
             return res.render('dashboard', {

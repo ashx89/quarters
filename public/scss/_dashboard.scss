@@ -227,13 +227,13 @@
 .comment-header {
 	position: relative;
 	padding-bottom: 5px;
-	& h5, time {
+	& h5, time, abbr {
 		float: left;
 	}
 	& h5 {
 		color: $blue;
 	}
-	& time {
+	& abbr, time {
 		position: absolute;
 		right: 10px;
 		font-size: 12px;

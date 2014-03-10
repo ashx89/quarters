@@ -1,13 +1,13 @@
 define([
     'backbone',
     'js/events/events',
-    'js/views/subviews/CommentView'
+    'js/views/subviews/UserView'
 
-], function(Backbone, Events, CommentView) {
+], function(Backbone, Events, UserView) {
 
-    var CommentsListView = Backbone.View.extend({
+    var UsersListView = Backbone.View.extend({
 
-        el: '#comments',
+        el: '#user-list',
 
         initialize: function(collection, options) {
             this.$el.empty();
@@ -23,13 +23,12 @@ define([
         },
 
         addOne: function(model) {
-            var comment = new CommentView({ model: model });
-            this.$el.append(comment.render().el);
-            $('abbr.timeago').timeago();
+            var user = new UserView({ model: model });
+            this.$el.append(user.render().el);
         }
 
     });
 
-    return CommentsListView;
+    return UsersListView;
 
 });

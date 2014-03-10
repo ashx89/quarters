@@ -14,7 +14,6 @@ define([
 
         initialize: function() {
             this.model.on('change', this.render, this);
-            //_.bindAll(this,'setTaskStatus', 'showTask');
         },
 
         render: function() {
@@ -23,7 +22,6 @@ define([
         },
 
         deleteComment: function(e) {
-            //var id = $(e.target).data('id');
             this.model.destroy({success: function(res) { console.log(res); } })
         }
 
