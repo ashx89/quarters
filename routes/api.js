@@ -70,7 +70,7 @@ function APIHandler(db) {
 
         projects.newTask(pid, id, title, function(err, doc) {
             if (err) return next(err);
-            return res.json(doc.tasks[0]);
+            return res.json(doc.tasks);
         }); 
 
     };

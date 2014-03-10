@@ -24,9 +24,7 @@ define([
         render: function() {},
 
         tasksRender: function(obj) {
-            
             this.tasksView.render({ projectId: obj.pid, projectTitle: obj.title})
-
         }
 
     });

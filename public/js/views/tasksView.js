@@ -18,13 +18,14 @@ define([
         },
 
         initialize: function() {
-
             _.bindAll(this, 'newTask', 'openModal', 'closeModal');
-
         },
 
         render: function(options) {
+
+
             this.collection = new Tasks([], {id: options.projectId});
+            
             this.tasksList  = new TasksListView({ collection: this.collection });
 
             this.projectId = options.projectId;

@@ -67,7 +67,6 @@ function ProjectsDAO(db) {
 
 			projects.findOne({'_id': pid}, function(err, doc) {
 				if (err) throw err;
-				console.log('fo----------------', doc);
 				callback(err, doc);
 			});
 			
@@ -87,7 +86,6 @@ function ProjectsDAO(db) {
 
 			projects.findOne({'tasks._id': id}, {'tasks.$': 1}, function(err, doc) {
 				if (err) throw err;
-				console.log('fo----------------', doc);
 				callback(err, doc);
 			});
 
