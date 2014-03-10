@@ -46,7 +46,7 @@ define([
             this.collection.create(task, {wait: true});
             this.closeModal();
 
-            Events.trigger('TasksListView', {pid: task.projectid, title: task.title});
+            //Events.trigger('TasksListView', {pid: task.projectid, title: task.title});
         },
 
         subRender: function(options) {

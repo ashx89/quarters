@@ -18,14 +18,15 @@ define([
             this.tasksView   = new TasksView();
 
             this.subviews.push(this.projectView);
+            this.subviews.push(this.tasksView);
         },
 
         render: function() {},
 
         tasksRender: function(obj) {
-
+            
             this.tasksView.render({ projectId: obj.pid, projectTitle: obj.title})
-            this.subviews.push(this.tasksView);
+
         }
 
     });

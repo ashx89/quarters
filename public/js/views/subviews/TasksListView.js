@@ -1,8 +1,9 @@
 define([
     'backbone',
+    'js/events/events',
     'js/views/subviews/TaskView'
 
-], function(Backbone, TaskView) {
+], function(Backbone, Events, TaskView) {
 
     var TasksListView = Backbone.View.extend({
 

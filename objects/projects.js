@@ -103,7 +103,7 @@ function ProjectsDAO(db) {
 			
 			if (err) throw err;
 
-			projects.update({'_id': pid}, {'$unset': {'tasks': {'_id': id} } }, function(err, doc) {
+			projects.update({'_id': pid}, {'$pull': {'tasks': {'_id': id} } }, function(err, doc) {
 				if (err) throw err;
 
 				projects.findOne({'_id': pid}, function(err, doc) {
