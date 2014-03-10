@@ -18,6 +18,8 @@ define([
 
         initialize: function() {
 
+            this.subviews = [];
+
             _.bindAll(this, 'newProject', 'openModal', 'closeModal');
 
             this.modal       = $('[data-modal="new-project');
@@ -25,6 +27,7 @@ define([
             this.projectList = new ProjectListView({ collection: this.collection });
 
             this.subviews.push(this.projectList);
+            console.log('project', this.subviews);
         },
 
         newProject: function(e) {

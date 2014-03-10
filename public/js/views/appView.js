@@ -13,6 +13,8 @@ define([
 
         initialize: function() {
 
+            this.subviews = [];
+
             Events.on('TasksListView', this.tasksRender, this);
             Events.on('TaskView', this.taskRender, this);
 
@@ -23,6 +25,8 @@ define([
             this.subviews.push(this.projectView);
             this.subviews.push(this.tasksView);
             this.subviews.push(this.taskView);
+
+            console.log('app', this.subviews);
         },
 
         render: function() {},

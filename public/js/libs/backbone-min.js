@@ -2,6 +2,7 @@
 //# sourceMappingURL=backbone-min.map
 
 Backbone.View.prototype.close = function() {
+    
     this.remove();
     this.unbind();
 
@@ -13,6 +14,8 @@ Backbone.View.prototype.close = function() {
         }
         subview.close();
     });
+
+    console.log('closed')
 };
 
 Backbone.View = (function(View) {
@@ -24,14 +27,15 @@ Backbone.View = (function(View) {
     });
 })(Backbone.View);
 
-Backbone.View.prototype.subviews = [];
+//Backbone.View.prototype.subviews = [];
 
-Backbone.View.prototype.close = function() {
+// Backbone.View.prototype.close = function() {
 
-    this.remove();
-    this.unbind();
+//     this.remove();
+//     this.unbind();
 
-    _.each(this.subviews, function(subview) {
-        subview.close();
-    });
-};
+//     _.each(this.subviews, function(subview) {
+//         subview.close();
+//     });
+//     console.log('closed')
+// };

@@ -34,3 +34,14 @@
 .hidden {
 	display: none;
 }
+
+.active-task {
+    background: rgba($blue, 0.1);
+}
+.active-task .completed-true {
+    background: lighten($red, 20);
+}
+
+.active-project {
+    background: black;
+}

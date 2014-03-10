@@ -125,7 +125,7 @@ function ProjectsDAO(db) {
 	/* ------------------------------------------------   
      * New Comment
      * ----------------------------------------------- */
-     this.newComment = function(tid, id, comment, callback) {
+     this.newComment = function(tid, id, comment, author, callback) {
 
 		console.log("creating a new comment...");
 
@@ -133,7 +133,8 @@ function ProjectsDAO(db) {
 		var comment  = {
 						 '_id': id, 
 						 text: comment, 
-						 date: new Date()
+						 date: new Date(),
+						 author: author
 						};
 						
 		var operator = {'$push': {'tasks.$.comments': comment}};

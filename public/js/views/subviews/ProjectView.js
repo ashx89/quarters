@@ -24,6 +24,9 @@ define([
         showTasks: function(e) {
             e.preventDefault();
 
+            var target = $(e.target).parent().parent();
+            target.addClass('active-project').siblings().removeClass('active-project');
+
             var pid   = $(e.target).data('id');
             var title = $(e.target).data('title');
 

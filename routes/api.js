@@ -124,8 +124,11 @@ function APIHandler(db) {
         var tid     = req.body.taskId;
         var id      = req.body.id;
         var comment = req.body.text;
+        var author  = req.username;
 
-        projects.newComment(tid, id, comment, function(err, doc) {
+        console.log(author)
+
+        projects.newComment(tid, id, comment, author, function(err, doc) {
             if (err) return err;
             return res.json(doc.tasks);
         });

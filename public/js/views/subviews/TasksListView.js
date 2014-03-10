@@ -9,7 +9,7 @@ define([
 
         el: '.tasks-body ul',
 
-        initialize: function(collection, options) {
+        initialize: function(collection, options) {            
             this.collection.on('add', this.addOne, this);
             this.collection.on('remove', this.render, this);
             this.collection.fetch();

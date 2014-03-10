@@ -102,11 +102,11 @@
 				============================================== -->
 
 				<section id="task">
-					<div id="task-header" class="task-header shadow-box clear"></div>
+					<div id="task-header" class="task-header shadow-box clear hidden"></div>
 
-					<div id="task-body" class="task-body shadow-box"></div>
+					<div id="task-body" class="task-body shadow-box hidden"></div>
 
-					<div id="task-footer" class="task-footer">
+					<div id="task-footer" class="task-footer hidden">
 						<form id="comment-form">
 							<input type="text" id="comment" placeholder="Comment..." />
 							<input type="submit" value="Submit" style="display: none;" name="submit" id="comment-submit" />
@@ -135,7 +135,6 @@
 	<!-- task header template -->
 	<script type="text/template" id="task-header-template">
 		<h2>{{ title }}</h2>
-		<a href="#0"><i class="icon-bin"></i></a>
 	</script>
 	<!--=========================-->
 
@@ -143,7 +142,7 @@
 		<li class="clear">
 		    <div class="comment">
 		        <div class="comment-header clear">
-		            <h5>Ashley</h5>
+		            <h5>{{ author }}</h5>
 		            <time>2 days ago</time>
 		        </div>
 		        <p>{{ text }}</p>

@@ -29,8 +29,9 @@ define([
 
         render: function(options) {
             this.task = options.task;
-            $('#task-header').html( this.taskHeader(this.task.toJSON()) );
-            $('#task-body').html( this.taskBody(this.task.toJSON()) );
+            $('#task-header').html( this.taskHeader(this.task.toJSON()) ).removeClass('hidden');
+            $('#task-body').html( this.taskBody(this.task.toJSON()) ).removeClass('hidden');
+            $('#task-footer').removeClass('hidden');
 
             this.collection = new Comments([], {id: this.task.id});
             new CommentsListView({ collection: this.collection });
@@ -42,8 +43,9 @@ define([
         },
 
         clearView: function() {
-            $('#task-header').empty();
-            $('#task-body').empty();
+            $('#task-header').empty().addClass('hidden');
+            $('#task-body').empty().addClass('hidden');
+            $('#task-footer').addClass('hidden');
             $('#comments').empty();
         },
 
@@ -57,6 +59,7 @@ define([
             };
 
             this.collection.create(comment, {wait: true});
+            this.collection.fetch();
             $('#comment').val('');
         }
 

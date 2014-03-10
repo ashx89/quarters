@@ -31,7 +31,6 @@ define([
             this.model.save();
 
             if (value) Events.trigger('clearTaskView');
-            //Events.trigger('updateTask',  this.model);
         },
 
         deleteTask: function(e) {
@@ -41,7 +40,8 @@ define([
         },
 
         showTask: function(e) {
-            //var taskId = $(e.target).data('id');
+            var target = $(e.target).parent().parent().parent(); // default div
+            target.addClass('active-task').siblings().removeClass('active-task');
             Events.trigger('TaskView', {task: this.model});
         }
 

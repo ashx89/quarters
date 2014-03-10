@@ -19,19 +19,20 @@ define([
         },
 
         initialize: function() {
+
+            this.subviews = [];
             _.bindAll(this, 'newTask', 'openModal', 'closeModal');
         },
 
         render: function(options) {
 
-            this.collection = new Tasks([], {id: options.projectId});
-            
-            this.tasksList  = new TasksListView({ collection: this.collection });
+            this.projectId   = options.projectId;
 
-            this.projectId  = options.projectId;
+            this.collection  = new Tasks([], {id: options.projectId});
+            this.tasksList   = new TasksListView({ collection: this.collection });
 
+            this.subviews.push(this.tasksList);
             this.subRender(options);
-            this.subviews.push(this.taskList);
             return this;
         },
 
