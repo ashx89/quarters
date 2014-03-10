@@ -28,6 +28,7 @@ define([
             var title = $(e.target).data('title');
 
             Events.trigger('TasksListView', {pid: pid, title: title});
+            Events.trigger('clearTaskView');
         }
 
     });

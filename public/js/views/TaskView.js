@@ -16,7 +16,8 @@ define([
         initialize: function(options) {
             // _.bindAll(this, 'newTask', 'openModal', 'closeModal');
             
-            //Events.on('updateTask', this.updateTask, this);
+            Events.on('updateTask', this.updateTask, this);
+            Events.on('clearTaskView', this.clearView, this);
 
             this.taskHeader = _.template($('#task-header-template').html());
             this.taskBody   = _.template($('#task-body-template').html());
@@ -28,8 +29,14 @@ define([
             $('#task-body').html( this.taskBody(this.task.toJSON()) );
         },
 
-        updateTask: function(obj) {
-            //(obj.status) ? this.$el.css({'background': 'green'}) : this.$el.css({'background': '#efefef'})
+        updateTask: function(task) {
+            var status = task.attributes.completed;
+            (status) ? this.$el.addClass('completed-' + status) : this.$el.removeClass('completed-' + !status);
+        },
+
+        clearView: function() {
+            $('#task-header').empty();
+            $('#task-body').empty();
         }
 
     });

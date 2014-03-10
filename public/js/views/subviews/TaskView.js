@@ -1,8 +1,9 @@
 define([
     'backbone',
+    'js/events/events',
     'text!templates/task.html'
 
-], function(Backbone, TaskTemplate) {
+], function(Backbone, Events, TaskTemplate) {
 
     var TaskView = Backbone.View.extend({
 
@@ -29,12 +30,14 @@ define([
             this.model.set('completed', value);
             this.model.save();
 
-            // Events.trigger('updateTask', {status: value});
+            if (value) Events.trigger('clearTaskView');
+            //Events.trigger('updateTask',  this.model);
         },
 
         deleteTask: function(e) {
             var id = $(e.target).data('id');
-            this.model.destroy({success: function(res) { console.log(res) } })
+            this.model.destroy({success: function(res) { console.log(res); Events.trigger('clearTaskView'); } })
+
         },
 
         showTask: function(e) {

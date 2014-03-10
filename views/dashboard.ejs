@@ -177,21 +177,21 @@
 		    <i class="icon-calendar"></i>
 		    <div class="label">
 		        <span>deadline:</span>
-		        <h4>{{ date }}</h4>
+		        <h4>{{ deadline }}</h4>
 		    </div>
 		</div>
 		<div class="task-info clear">
 		    <i class="icon-tags"></i>
 		    <div class="label">
 		        <span>tags:</span>
-		        <h4>development, design</h4>
+		        <h4>{{ tags }}</h4>
 		    </div>
 		</div>
 		<div class="task-info clear">
 		    <i class="icon-subtasks"></i>
 		    <div class="label">
 		        <span>subtasks:</span>
-		        <h4>Subtasks</h4>
+		        <h4>-</h4>
 		    </div>
 		</div>
 	</script>
@@ -224,14 +224,14 @@
 								<i class="icon-calendar"></i>
 								<div class="label">
 									<span>set end date:</span>
-									<input type="text" placeholder="dd/mm/yyyy" />
+									<input type="text" placeholder="dd/mm/yyyy" id="input-end-date" />
 								</div>
 							</div>
 							<div class="task-info clear">
 								<i class="icon-tags"></i>
 								<div class="label">
 									<span>tags:</span>
-									<input type="text" placeholder="design, html, business" />
+									<input type="text" placeholder="design, html, business" id="input-tags" />
 								</div>
 							</div>
 							<div class="task-info clear">

@@ -40,8 +40,10 @@ define([
 
             var task = {
                 projectid: this.projectId,
-                id: new Date().getTime().toString(),
-                title: $('#input-task-title').val(),
+                id:        new Date().getTime().toString(),
+                title:     $('#input-task-title').val(),
+                tags:      $('#input-tags').val(),
+                deadline:  $('#input-end-date').val(),
                 completed: false
             };
 

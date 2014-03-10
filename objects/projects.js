@@ -55,12 +55,20 @@ function ProjectsDAO(db) {
 	/* ------------------------------------------------   
      * New Task
      * ----------------------------------------------- */
-	this.newTask = function(pid, id, title, callback) {
+	this.newTask = function(pid, id, title, tags, deadline, callback) {
 
 		console.log("creating a new task...");
 
 		var query 	 = {'_id': pid};
-		var task 	 = {'_id': id, title: title, date: new Date(), completed: false };
+		var task 	 = {
+						 '_id': id, 
+						 title: title, 
+						 date: new Date(),
+						 tags: tags,
+						 deadline: deadline,
+						 completed: false 
+						};
+						
 		var operator = {'$push': {'tasks': task}};
 
 		projects.update(query, operator, {'upsert': false}, function(err, doc) {

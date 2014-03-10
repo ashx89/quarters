@@ -109,6 +109,9 @@
 			margin: 5px 0;
 			color: black;
 			float: left;
+			& p:hover {
+				color: $blue;
+			}
 		}
 		& .icon-bin {
 			float: left;

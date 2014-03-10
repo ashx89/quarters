@@ -64,11 +64,14 @@ function APIHandler(db) {
 
     this.handleNewTask = function(req, res, next) {
 
-        var pid   = req.body.projectid.toString();
-        var id    = req.body.id;
-        var title = req.body.title;
+        var pid      = req.body.projectid.toString();
+        var id       = req.body.id;
+        var title    = req.body.title;
+        var deadline = req.body.deadline;
 
-        projects.newTask(pid, id, title, function(err, doc) {
+        var tags  = req.body.tags.split(',');
+
+        projects.newTask(pid, id, title, tags, deadline, function(err, doc) {
             if (err) return next(err);
             return res.json(doc.tasks);
         }); 
