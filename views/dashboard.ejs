@@ -109,34 +109,9 @@
 					<div id="task-footer" class="task-footer">
 						<form id="comment-form">
 							<input type="text" id="comment" placeholder="Comment..." />
-							<input type="submit" value="Submit" style="display: none;" />
+							<input type="submit" value="Submit" style="display: none;" name="submit" id="comment-submit" />
 						</form>
-						<ul id="comments">
-							<li class="clear">
-								<div class="comment">
-									<div class="comment-header clear">
-										<h5>Ashley</h5>
-										<time>2 days ago</time>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-								</div>
-								<a href="#0">
-									<i class="icon-bin"></i>
-								</a>
-							</li>
-							<li class="clear">
-								<div class="comment">
-									<div class="comment-header clear">
-										<h5>Ashley</h5>
-										<time>2 days ago</time>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-								</div>
-								<a href="#0">
-									<i class="icon-bin"></i>
-								</a>
-							</li>
-						</ul>
+						<ul id="comments"></ul>
 					</div>
 
 				</section><!--end task-->
@@ -163,6 +138,21 @@
 		<a href="#0"><i class="icon-bin"></i></a>
 	</script>
 	<!--=========================-->
+
+	<script type="text/template" id="task-comments-template">
+		<li class="clear">
+		    <div class="comment">
+		        <div class="comment-header clear">
+		            <h5>Ashley</h5>
+		            <time>2 days ago</time>
+		        </div>
+		        <p>{{ text }}</p>
+		    </div>
+		    <a href="#0">
+		        <i data-id="{{ _id }}" class="icon-bin comment-bin"></i>
+		    </a>
+		</li>
+	</script>
 
 	<!-- task body template -->
 	<script type="text/template" id="task-body-template">

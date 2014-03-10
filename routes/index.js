@@ -47,4 +47,8 @@ module.exports = exports = function(app, db) {
     app.put('/project/:id/tasks/:tid', apiHandler.updateTask);
     app.delete('/project/:id/tasks/:tid', apiHandler.deleteTask);
 
+    app.get('/tasks/:id/comments', apiHandler.getComments);
+    app.post('/tasks/:id/comments', apiHandler.handleNewComment);
+    app.delete('/tasks/:id/comments/:cid', apiHandler.deleteComment);
+
 };

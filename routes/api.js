@@ -101,6 +101,47 @@ function APIHandler(db) {
         });
     };
 
+    /* ------------------------------------------------   
+     * Comments
+     * ---------------------------------------------- */
+     this.getComments = function(req, res) {
+
+        if (!req.username) res.redirect('/');
+
+        var id = req.params.id;
+
+        projects.getComments(id, function(err, tasks) {
+            if (err) throw err;
+            if (tasks == null) return;
+            return res.json(tasks);
+        });
+    };
+
+     this.handleNewComment = function(req, res, next) {
+
+        console.log("creating a new comment...");
+
+        var tid     = req.body.taskId;
+        var id      = req.body.id;
+        var comment = req.body.text;
+
+        projects.newComment(tid, id, comment, function(err, doc) {
+            if (err) return err;
+            return res.json(doc.tasks);
+        });
+    };
+
+    this.deleteComment = function(req, res, next) {
+
+        var id  = req.params.id;
+        var cid = req.params.cid;
+
+        projects.deleteComment(id, cid, function(err, doc) {
+            if (err) return err;
+            return res.json(doc.tasks);
+        });
+    };
+
 
 };
 

@@ -9,7 +9,7 @@ define([
 
         events: {
             'click .checkbox-label': 'setTaskStatus',
-            'click .icon-bin': 'deleteTask',
+            'click .task-bin': 'deleteTask',
             'click .task-item-title': 'showTask'
         },
 

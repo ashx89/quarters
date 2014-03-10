@@ -120,9 +120,63 @@ function ProjectsDAO(db) {
 
 			});
 		});
-
 	};
 
+	/* ------------------------------------------------   
+     * New Comment
+     * ----------------------------------------------- */
+     this.newComment = function(tid, id, comment, callback) {
+
+		console.log("creating a new comment...");
+
+		var query 	 = {'tasks._id': tid};
+		var comment  = {
+						 '_id': id, 
+						 text: comment, 
+						 date: new Date()
+						};
+						
+		var operator = {'$push': {'tasks.$.comments': comment}};
+
+		projects.update(query, operator, {'upsert': false}, function(err, doc) {
+
+			projects.findOne({'tasks._id': tid}, {'tasks.$': 1}, function(err, doc) {
+				if (err) throw err;
+				callback(err, doc);
+			});
+			
+		});
+	};
+
+	this.getComments = function(id, callback) {
+		projects.findOne({'tasks._id': id}, {'tasks.$': 1}, function(err, docs) {
+			if (err) throw err;
+			if (docs == null) return callback(err, null);
+			callback(err, docs.tasks[0].comments);
+		});
+	};
+
+	this.deleteComment = function(id, cid, callback) {
+
+		var cid = cid.toString();
+		var id  = id.toString();
+
+		projects.findOne({'tasks._id': id}, {'tasks.$': 1}, function(err, doc) {
+			
+			if (err) throw err;
+
+			projects.update({'tasks._id': id}, {'$pull': {'tasks.$.comments': {'_id': cid} } }, function(err, doc) {
+				if (err) throw err;
+
+				projects.findOne({'tasks._id': id}, function(err, doc) {
+					if (err) throw err;
+					callback(null, doc);
+				});
+
+			});
+		});
+
+	};
 
 };
 
