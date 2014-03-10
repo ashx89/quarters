@@ -64,7 +64,7 @@ function APIHandler(db) {
 
     this.handleNewTask = function(req, res, next) {
 
-        var pid   = req.body.projectid;
+        var pid   = req.body.projectid.toString();
         var id    = req.body.id;
         var title = req.body.title;
 
@@ -85,6 +85,17 @@ function APIHandler(db) {
             return res.json(doc.tasks[0]);
         }); 
 
+    };
+
+    this.deleteTask = function(req, res, next) {
+
+        var id  = req.params.id;
+        var tid = req.params.tid;
+
+        projects.deleteTask(id, tid, function(err, doc) {
+            if (err) return err;
+            return res.json(doc.tasks);
+        });
     };
 
 

@@ -7,7 +7,8 @@ define([
     var TaskView = Backbone.View.extend({
 
         events: {
-            'click .checkbox-label': 'setTaskStatus'
+            'click .checkbox-label': 'setTaskStatus',
+            'click .icon-bin': 'deleteTask'
         },
 
         template: _.template(TaskTemplate),
@@ -26,7 +27,12 @@ define([
             var value = (this.model.get('completed') == false) ? true : false;
             this.model.set('completed', value);
             this.model.save();
-            console.log(this.model)
+        },
+
+        deleteTask: function(e) {
+
+            var id = $(e.target).data('id');
+            this.model.destroy({success: function(res) { console.log(res) } })
         }
 
     });

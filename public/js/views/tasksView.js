@@ -17,32 +17,36 @@ define([
             'click #btn-task-new':  'newTask'
         },
 
-        initialize: function(options) {
+        initialize: function() {
 
             _.bindAll(this, 'newTask', 'openModal', 'closeModal');
 
-            this.modal      = $('[data-modal="new-task');
-            //this.collection = new Tasks();
-            this.tasksList  = new TasksListView({ collection: new Tasks([], {id: options.projectId}) });
+        },
+
+        render: function(options) {
+            this.collection = new Tasks([], {id: options.projectId});
+            this.tasksList  = new TasksListView({ collection: this.collection });
+
+            this.projectId = options.projectId;
 
             this.subRender(options);
             this.subviews.push(this.taskList);
         },
 
-        render: function() {},
-
         newTask: function(e) {
             e.preventDefault();
 
             var task = {
-                id:    new Date().getTime().toString(),
-                title: document.getElementById('input-project-title').value,
+                projectid: this.projectId,
+                id: new Date().getTime().toString(),
+                title: $('#input-task-title').val(),
                 completed: false
             };
 
-            this.collection.create(project, {wait: true});
-            this.modal.addClass('hidden')
+            this.collection.create(task, {wait: true});
+            this.closeModal();
 
+            Events.trigger('TasksListView', {pid: task.projectid, title: task.title});
         },
 
         subRender: function(options) {
@@ -53,11 +57,12 @@ define([
 
         openModal: function(e) {
             e.preventDefault();
-            this.modal.removeClass('hidden');
+            var template = _.template($('#task-modal-template').html());
+            $('#tasks-modal-container').html(template());
         },
 
         closeModal: function() {
-            this.modal.addClass('hidden');
+            $('#tasks-modal-container').empty();
         },
 
     });

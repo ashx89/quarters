@@ -59,20 +59,20 @@ function ProjectsDAO(db) {
 
 		console.log("creating a new task...");
 
-		var query 	 = {_id: pid};
-		var task 	 = {_id: id, title: title, date: new Date(), completed: false };
-		var operator = {$push: {tasks: task}};
+		var query 	 = {'_id': pid};
+		var task 	 = {'_id': id, title: title, date: new Date(), completed: false };
+		var operator = {'$push': {'tasks': task}};
 
-		projects.findAndModify(query, {}, operator, {new: true, remove: false}, function(err, doc) {
-			if (err) throw err;
-			console.log("New task created");
+		projects.update(query, operator, {'upsert': false}, function(err, doc) {
 
-			projects.findOne(query, {'tasks': {$elemMatch: {_id: id}}}, function(err, doc) {
+			projects.findOne({'_id': pid}, function(err, doc) {
 				if (err) throw err;
+				console.log('fo----------------', doc);
 				callback(err, doc);
-				task = {};
-			})
+			});
+			
 		});
+
 	};
 
 	/* ------------------------------------------------   
@@ -90,8 +90,30 @@ function ProjectsDAO(db) {
 				console.log('fo----------------', doc);
 				callback(err, doc);
 			});
-			
+
 		});
+	};
+
+	this.deleteTask = function(pid, id, callback) {
+
+		var pid = pid.toString();
+		var id  = id.toString();
+
+		projects.findOne({'tasks._id': id}, {'tasks.$': 1}, function(err, doc) {
+			
+			if (err) throw err;
+
+			projects.update({'_id': pid}, {'$unset': {'tasks': {'_id': id} } }, function(err, doc) {
+				if (err) throw err;
+
+				projects.findOne({'_id': pid}, function(err, doc) {
+					if (err) throw err;
+					callback(null, doc);
+				});
+
+			});
+		});
+
 	};
 
 

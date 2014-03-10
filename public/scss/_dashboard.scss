@@ -104,10 +104,17 @@
 			margin: 10px 0;
 		}
 		& .wrap {
-			width: 85%;
+			width: 80%;
 			padding-left: 10px;
 			margin: 5px 0;
 			color: black;
+			float: left;
+		}
+		& .icon-bin {
+			float: left;
+			display: inline-block;
+			margin-top: 10px;
+			cursor: pointer;
 		}
 	}
 }

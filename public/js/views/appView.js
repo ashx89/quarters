@@ -15,6 +15,7 @@ define([
             Events.on('TasksListView', this.tasksRender, this);
 
             this.projectView = new ProjectView();
+            this.tasksView   = new TasksView();
 
             this.subviews.push(this.projectView);
         },
@@ -22,7 +23,8 @@ define([
         render: function() {},
 
         tasksRender: function(obj) {
-            this.tasksView = new TasksView({ projectId: obj.pid, projectTitle: obj.title});
+
+            this.tasksView.render({ projectId: obj.pid, projectTitle: obj.title})
             this.subviews.push(this.tasksView);
         }
 
