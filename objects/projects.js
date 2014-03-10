@@ -86,6 +86,7 @@ function ProjectsDAO(db) {
 
 			projects.findOne({'tasks._id': id}, {'tasks.$': 1}, function(err, doc) {
 				if (err) throw err;
+				console.log(doc)
 				callback(err, doc);
 			});
 

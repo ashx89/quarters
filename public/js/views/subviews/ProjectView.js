@@ -28,7 +28,6 @@ define([
             var title = $(e.target).data('title');
 
             Events.trigger('TasksListView', {pid: pid, title: title});
-            // new TasksListView([], {pid: pid, model: this.model}).render()
         }
 
     });

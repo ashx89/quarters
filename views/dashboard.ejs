@@ -102,45 +102,11 @@
 				============================================== -->
 
 				<section id="task">
-					<div class="task-header shadow-box clear">
-						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h2>
-						<a href="#0">
-							<i class="icon-bin"></i>
-						</a>
-					</div>
+					<div id="task-header" class="task-header shadow-box clear"></div>
 
-					<div class="task-body shadow-box">
-						<div class="task-info clear">
-							<i class="icon-avatar-black"></i>
-							<div class="label">
-								<span>assigned to:</span>
-								<h4>Ashley</h4>
-							</div>
-						</div>
-						<div class="task-info clear">
-							<i class="icon-calendar"></i>
-							<div class="label">
-								<span>deadline:</span>
-								<h4>28/12/2013</h4>
-							</div>
-						</div>
-						<div class="task-info clear">
-							<i class="icon-tags"></i>
-							<div class="label">
-								<span>tags:</span>
-								<h4>development, design</h4>
-							</div>
-						</div>
-						<div class="task-info clear">
-							<i class="icon-subtasks"></i>
-							<div class="label">
-								<span>subtasks:</span>
-								<h4>Subtasks</h4>
-							</div>
-						</div>
-					</div>
+					<div id="task-body" class="task-body shadow-box"></div>
 
-					<div class="task-footer">
+					<div id="task-footer" class="task-footer">
 						<form id="comment-form">
 							<input type="text" id="comment" placeholder="Comment..." />
 							<input type="submit" value="Submit" style="display: none;" />
@@ -180,6 +146,7 @@
 
 	</div><!--end container-->
 
+	<!-- project list item template -->
 	<script type="text/template" id="project-list-template">
 		<li class="project-item">
 			<a href="#0" data-id="{{ _id }}">
@@ -188,6 +155,47 @@
 			</a>
 		</li>
 	</script>
+	<!--=========================-->
+
+	<!-- task header template -->
+	<script type="text/template" id="task-header-template">
+		<h2>{{ title }}</h2>
+		<a href="#0"><i class="icon-bin"></i></a>
+	</script>
+	<!--=========================-->
+
+	<!-- task body template -->
+	<script type="text/template" id="task-body-template">
+		<div class="task-info clear">
+		    <i class="icon-avatar-black"></i>
+		    <div class="label">
+		        <span>assigned to:</span>
+		        <h4>Ashley</h4>
+		    </div>
+		</div>
+		<div class="task-info clear">
+		    <i class="icon-calendar"></i>
+		    <div class="label">
+		        <span>deadline:</span>
+		        <h4>{{ date }}</h4>
+		    </div>
+		</div>
+		<div class="task-info clear">
+		    <i class="icon-tags"></i>
+		    <div class="label">
+		        <span>tags:</span>
+		        <h4>development, design</h4>
+		    </div>
+		</div>
+		<div class="task-info clear">
+		    <i class="icon-subtasks"></i>
+		    <div class="label">
+		        <span>subtasks:</span>
+		        <h4>Subtasks</h4>
+		    </div>
+		</div>
+	</script>
+	<!--=========================-->
 
 	<script type="text/template" id="task-modal-template">
 		<div class="modal" data-modal="new-task">

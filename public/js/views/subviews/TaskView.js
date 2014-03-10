@@ -8,14 +8,15 @@ define([
 
         events: {
             'click .checkbox-label': 'setTaskStatus',
-            'click .icon-bin': 'deleteTask'
+            'click .icon-bin': 'deleteTask',
+            'click .task-item-title': 'showTask'
         },
 
         template: _.template(TaskTemplate),
 
         initialize: function() {
             this.model.on('change', this.render, this);
-            _.bindAll(this,'setTaskStatus');
+            _.bindAll(this,'setTaskStatus', 'showTask');
         },
 
         render: function() {
@@ -27,12 +28,18 @@ define([
             var value = (this.model.get('completed') == false) ? true : false;
             this.model.set('completed', value);
             this.model.save();
+
+            // Events.trigger('updateTask', {status: value});
         },
 
         deleteTask: function(e) {
-
             var id = $(e.target).data('id');
             this.model.destroy({success: function(res) { console.log(res) } })
+        },
+
+        showTask: function(e) {
+            //var taskId = $(e.target).data('id');
+            Events.trigger('TaskView', {task: this.model});
         }
 
     });

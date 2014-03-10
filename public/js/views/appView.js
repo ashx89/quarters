@@ -2,9 +2,10 @@ define([
     'backbone',
     'js/events/events',
     'js/views/ProjectView',
-    'js/views/TasksView'
+    'js/views/TasksView',
+    'js/views/TaskView'
 
-], function(Backbone, Events, ProjectView, TasksView) {
+], function(Backbone, Events, ProjectView, TasksView, TaskView) {
 
     var AppView = Backbone.View.extend({
 
@@ -13,18 +14,25 @@ define([
         initialize: function() {
 
             Events.on('TasksListView', this.tasksRender, this);
+            Events.on('TaskView', this.taskRender, this);
 
             this.projectView = new ProjectView();
             this.tasksView   = new TasksView();
+            this.taskView    = new TaskView();
 
             this.subviews.push(this.projectView);
             this.subviews.push(this.tasksView);
+            this.subviews.push(this.taskView);
         },
 
         render: function() {},
 
         tasksRender: function(obj) {
             this.tasksView.render({ projectId: obj.pid, projectTitle: obj.title})
+        },
+
+        taskRender: function(obj) {
+            this.taskView.render({task: obj.task})
         }
 
     });

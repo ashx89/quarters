@@ -1,9 +1,10 @@
 define([
     'backbone',
     'js/collections/tasks',
+    'js/events/events',
     'js/views/subviews/TasksListView'
 
-], function(Backbone, Tasks, TasksListView) {
+], function(Backbone, Tasks, Events, TasksListView) {
 
     var TasksView = Backbone.View.extend({
 
@@ -23,15 +24,15 @@ define([
 
         render: function(options) {
 
-
             this.collection = new Tasks([], {id: options.projectId});
             
             this.tasksList  = new TasksListView({ collection: this.collection });
 
-            this.projectId = options.projectId;
+            this.projectId  = options.projectId;
 
             this.subRender(options);
             this.subviews.push(this.taskList);
+            return this;
         },
 
         newTask: function(e) {
@@ -45,9 +46,8 @@ define([
             };
 
             this.collection.create(task, {wait: true});
+            this.collection.fetch(); // hmm?
             this.closeModal();
-
-            //Events.trigger('TasksListView', {pid: task.projectid, title: task.title});
         },
 
         subRender: function(options) {
@@ -64,7 +64,7 @@ define([
 
         closeModal: function() {
             $('#tasks-modal-container').empty();
-        },
+        }
 
     });
 
