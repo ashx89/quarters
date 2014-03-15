@@ -1,7 +1,6 @@
 define([
     'backbone',
-    'js/events/events',
-    'text!templates/task.html'
+    'js/events/events'
 
 ], function(Backbone, Events, TaskTemplate) {
 
@@ -13,10 +12,10 @@ define([
             'click .task-item-title': 'showTask'
         },
 
-        template: _.template(TaskTemplate),
+        template: _.template( $('#task-item-template').html() ),
 
         initialize: function() {
-            this.model.on('change', this.render, this);
+            this.listenTo(this.model, 'change', this.render);
             _.bindAll(this,'setTaskStatus', 'showTask');
         },
 

@@ -25,6 +25,8 @@ define([
             this.taskHeader   = _.template($('#task-header-template').html());
             this.taskBody     = _.template($('#task-body-template').html());
             this.taskComments = _.template($('#task-comments-template').html());
+
+            this.clearView();
         },
 
         render: function(options) {
@@ -32,6 +34,7 @@ define([
             $('#task-header').html( this.taskHeader(this.task.toJSON()) ).removeClass('hidden');
             $('#task-body').html( this.taskBody(this.task.toJSON()) ).removeClass('hidden');
             $('#task-footer').removeClass('hidden');
+            $('abbr.timeago').timeago();
 
             this.collection = new Comments([], {id: this.task.id});
             new CommentsListView({ collection: this.collection });

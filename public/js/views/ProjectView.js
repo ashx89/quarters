@@ -56,11 +56,6 @@ define([
 
             this.userCollection.create(user, {wait: true});
             this.userCollection.fetch()
-            //console.log(this.collection)
-            //this.collection.save();
-
-           // this.collection.create(team, {wait: true});
-            //this.modal.addClass('hidden');
         },
 
         renderUserList: function(obj) {

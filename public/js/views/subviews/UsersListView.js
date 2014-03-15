@@ -11,8 +11,8 @@ define([
 
         initialize: function(collection, options) {
             this.$el.empty();
-            this.collection.on('add', this.addOne, this);
-            this.collection.on('remove', this.render, this);
+            this.listenTo(this.collection, 'add', this.addOne);
+            this.listenTo(this.collection, 'remove', this.render);
             this.collection.fetch();
         },
 

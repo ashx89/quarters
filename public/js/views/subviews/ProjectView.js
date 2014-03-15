@@ -1,10 +1,9 @@
 define([
     'backbone',
     'js/events/events',
-    'text!templates/project.html',
     'js/views/subviews/TasksListView',
 
-], function(Backbone, Events, ProjectTemplate, TasksListView) {
+], function(Backbone, Events, TasksListView) {
 
     var ProjectView = Backbone.View.extend({
 
@@ -12,7 +11,7 @@ define([
             'click .project-item': 'showTasks'
         },
 
-        template: _.template(ProjectTemplate),
+        template: _.template( $('#project-item-template').html() ),
 
         initialize: function() {},
 

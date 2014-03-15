@@ -3,17 +3,24 @@
 
 Backbone.View.prototype.close = function() {
     
-    this.remove();
+    this.stopListening();
+    this.off();
     this.unbind();
+    delete this;
+    //this.$el.empty()
+    //this.remove();
 
-    _.each(this.subviews, function(subview) {
-        if (subview.subviews) {
-            _.each(subview.subviews, function(subview) {
-                subview.close();
-            });
-        }
-        subview.close();
-    });
+
+    // _.each(this.subviews, function(subview) {
+    //     subview.$el.empty();
+    //     //console.log('emp')
+    //     if (subview.subviews) {
+    //         _.each(subview.subviews, function(subview) {
+    //             subview.close();
+    //         });
+    //     }
+    //     subview.close();
+    // });
 
     console.log('closed')
 };

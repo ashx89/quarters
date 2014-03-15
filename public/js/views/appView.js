@@ -23,23 +23,28 @@ define([
             Events.on('TaskView', this.taskRender, this);
 
             this.projectView = new ProjectView();
-            this.tasksView   = new TasksView();
-            this.taskView    = new TaskView();
 
             this.subviews.push(this.projectView);
-            this.subviews.push(this.tasksView);
-            this.subviews.push(this.taskView);
-
             console.log('app', this.subviews);
         },
 
         render: function() {},
 
         tasksRender: function(obj) {
+
+            if (this.currentView) this.currentView.close();
+
+            this.tasksView   = new TasksView();
+            this.currentView = this.tasksView;
             this.tasksView.render({ projectId: obj.pid, projectTitle: obj.title})
         },
 
         taskRender: function(obj) {
+
+            if (this.currentView) this.currentView.close();
+
+            this.taskView    = new TaskView();
+            this.currentView = this.taskView;
             this.taskView.render({task: obj.task})
         },
 

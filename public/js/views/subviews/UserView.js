@@ -1,16 +1,15 @@
 define([
     'backbone',
-    'text!templates/user.html',
     'js/events/events'
 
-], function(Backbone, UserTemplate, Events) {
+], function(Backbone, Events) {
 
     var UserView = Backbone.View.extend({
 
-        template: _.template(UserTemplate),
+        template: _.template( $('#user-item-template').html() ),
 
         initialize: function() {
-            this.model.on('change', this.render, this);
+            this.listenTo(this.model, 'change', this.render);
         },
 
         render: function() {

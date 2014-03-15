@@ -21,16 +21,19 @@ define([
         initialize: function() {
             this.subviews = [];
             _.bindAll(this, 'newTask', 'openModal', 'closeModal');
+
+            $('#tasks-container .tasks-body ul').empty();
         },
 
         render: function(options) {
 
-            this.projectId  = options.projectId;
+            this.projectId   = options.projectId;
+            this.collection  = new Tasks([], {id: options.projectId});
+            this.tasksList   = new TasksListView({ collection: this.collection });
 
-            this.collection = new Tasks([], {id: options.projectId});
-            this.tasksList  = new TasksListView({ collection: this.collection });
-
+            this.currentView = this.tasksList;
             this.subviews.push(this.tasksList);
+
             this.subRender(options);
             return this;
         },

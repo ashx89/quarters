@@ -139,23 +139,46 @@
 
 	</div><!--end container-->
 
-	<!-- project list item template -->
-	<script type="text/template" id="project-list-template">
-		<li class="project-item">
-			<a href="#0" data-id="{{ _id }}">
-				<i class="icon-project"></i>
-				<span>{{ title }}</span>
-			</a>
+
+	<!-- project item template -->
+	<script type="text/template" id="project-item-template">
+		<li class="project-item clear">
+			<i class="icon-project"></i>
+			<a href="#0" data-id="{{ _id }}" data-title="{{ title }}">{{ title }}</a>
 		</li>
 	</script>
-	<!--=========================-->
+	<!--# end template-->
+
+	<!-- user item template-->
+		<script type="text/template" id="user-item-template">
+			<li class="project-item clear">
+			    <i class="icon-avatar"></i>
+			    <a href="#0" data-id="{{ _id }}">{{ username }}</a>
+			</li>
+		</script>
+	<!--# end template-->
+
+
+	<!-- task item template -->
+	<script type="text/template" id="task-item-template">
+		<li class="task-item clear completed-{{ completed }}" data-id="{{ _id }}">
+			<input type="checkbox" id="{{ _id }}" />
+			<label class="checkbox-label" for="{{ _id }}"></label>
+			<a href="#0" class="wrap">
+				<p class="task-item-title">{{ title }}</p>
+			</a>
+			<i data-id="{{ _id }}" class="icon-bin task-bin"></i>
+		</li>
+	</script>
+	<!--# end template -->
 
 	<!-- task header template -->
 	<script type="text/template" id="task-header-template">
 		<h2>{{ title }}</h2>
 	</script>
-	<!--=========================-->
+	<!--# end template -->
 
+	<!-- task comment template -->
 	<script type="text/template" id="task-comments-template">
 		<li class="clear">
 		    <div class="comment">
@@ -170,6 +193,7 @@
 		    </a>
 		</li>
 	</script>
+	<!-- # end task comment template -->
 
 	<!-- task body template -->
 	<script type="text/template" id="task-body-template">
@@ -201,9 +225,16 @@
 		        <h4>-</h4>
 		    </div>
 		</div>
+		<div class="task-info clear">
+		    <div class="label">
+		        <span>created:</span>
+		        <abbr class="timeago" title="{{ date }}"></abbr>
+		    </div>
+		</div>
 	</script>
-	<!--=========================-->
+	<!--# end task body template-->
 
+	<!-- task modal template -->
 	<script type="text/template" id="task-modal-template">
 		<div class="modal" data-modal="new-task">
 			<div class="modal-container">
@@ -253,6 +284,7 @@
 			<div class="modal-overlay"></div>
 		</div><!--end modal-->
 	</script>
+	<!--# end modal-->
 
 	<!--<script src="js/app.min.js"></script>-->
 <script data-main="js/main" src="js/libs/require.js"></script>

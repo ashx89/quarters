@@ -5,3 +5,9 @@
 .wrap {
 	float: left;
 }
+
+@-moz-document url-prefix() {
+    #dashboard-body {
+        height: 100%;
+    }
+}

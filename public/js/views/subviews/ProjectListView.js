@@ -9,7 +9,7 @@ define([
         el: '#project-list',
 
         initialize: function() {
-            this.collection.on('add', this.addOne, this);
+            this.listenTo(this.collection, 'add', this.addOne);
             this.collection.fetch();
         },
 

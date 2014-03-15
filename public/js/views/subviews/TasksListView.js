@@ -10,8 +10,9 @@ define([
         el: '.tasks-body ul',
 
         initialize: function(collection, options) {            
-            this.collection.on('add', this.addOne, this);
-            this.collection.on('remove', this.render, this);
+
+            this.listenTo(this.collection, 'add', this.addOne);
+            this.listenTo(this.collection, 'remove', this.render);
             this.collection.fetch();
         },
 
@@ -22,8 +23,8 @@ define([
         },
 
         addOne: function(model) {
-            var project = new TaskView({ model: model });
-            this.$el.append(project.render().el);
+            var task = new TaskView({ model: model });
+            this.$el.append(task.render().el);
         }
 
     });

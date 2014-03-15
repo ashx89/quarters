@@ -1,8 +1,14 @@
 #sidebar, #tasks, #task {
 	float: left;
 	//height: 100%;
-	height: 90%;
+	//height: 90%;
 	height: calc(100% - 50px);
+}
+
+@-moz-document url-prefix() {
+    #sidebar, #tasks, #task {
+        height: 100%;
+    }
 }
 
 /*=========================== SIDEBAR
