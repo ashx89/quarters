@@ -164,8 +164,9 @@
 		<li class="task-item clear completed-{{ completed }}" data-id="{{ _id }}">
 			<input type="checkbox" id="{{ _id }}" />
 			<label class="checkbox-label" for="{{ _id }}"></label>
-			<a href="#0" class="wrap">
+			<a href="#0" class="task-item-wrap">
 				<p class="task-item-title">{{ title }}</p>
+				<time class="task-item-date">{{ new Date(date).toDateString() }}</time>
 			</a>
 			<i data-id="{{ _id }}" class="icon-bin task-bin"></i>
 		</li>
@@ -260,7 +261,7 @@
 								<i class="icon-calendar"></i>
 								<div class="label">
 									<span>set end date:</span>
-									<input type="text" placeholder="dd/mm/yyyy" id="input-end-date" />
+									<input type="date" placeholder="dd/mm/yyyy" id="input-end-date" />
 								</div>
 							</div>
 							<div class="task-info clear">

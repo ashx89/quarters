@@ -30,7 +30,7 @@ input {
 		background: $lightgray;
 		font-size: 13px;
 		padding: 11px 10px 11px 8px;
-		border-right: 1px solid $gray;
+		border-right: 1px solid $midgray;
 		@include border-left-radius(3px);
 	}
 	& input {

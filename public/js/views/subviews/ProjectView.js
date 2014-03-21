@@ -8,7 +8,7 @@ define([
     var ProjectView = Backbone.View.extend({
 
         events: {
-            'click .project-item': 'showTasks'
+            'click .project-item a': 'showTasks'
         },
 
         template: _.template( $('#project-item-template').html() ),

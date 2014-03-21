@@ -9,7 +9,7 @@ define([
         events: {
             'click .checkbox-label': 'setTaskStatus',
             'click .task-bin': 'deleteTask',
-            'click .task-item-title': 'showTask'
+            'click .task-item-wrap': 'showTask'
         },
 
         template: _.template( $('#task-item-template').html() ),
@@ -39,7 +39,8 @@ define([
         },
 
         showTask: function(e) {
-            var target = $(e.target).parent().parent().parent(); // default div
+            e.preventDefault();
+            var target = ($(e.target).hasClass('task-item-wrap')) ? $(e.target).parent().parent() : $(e.target).parent().parent().parent();
             target.addClass('active-task').siblings().removeClass('active-task');
             Events.trigger('TaskView', {task: this.model});
         }

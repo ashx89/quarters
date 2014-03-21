@@ -48,7 +48,8 @@ define([
             this.taskView.render({task: obj.task})
         },
 
-        showOptions: function() {
+        showOptions: function(e) {
+            e.preventDefault();
             $('.dropdown').toggle();
         }
 

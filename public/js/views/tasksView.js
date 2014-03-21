@@ -31,7 +31,6 @@ define([
             this.collection  = new Tasks([], {id: options.projectId});
             this.tasksList   = new TasksListView({ collection: this.collection });
 
-            this.currentView = this.tasksList;
             this.subviews.push(this.tasksList);
 
             this.subRender(options);
@@ -51,7 +50,7 @@ define([
             };
 
             this.collection.create(task, {wait: true});
-            this.collection.fetch(); // hmm?
+            this.collection.reset();
             this.closeModal();
         },
 

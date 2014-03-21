@@ -88,7 +88,7 @@ function APIHandler(db) {
         var title    = req.body.title;
         var deadline = req.body.deadline;
 
-        var tags  = req.body.tags.split(',');
+        var tags     = req.body.tags.split(',');
 
         projects.newTask(pid, id, title, tags, deadline, function(err, doc) {
             if (err) return next(err);
