@@ -9,8 +9,8 @@ define([
 
         el: '.tasks-body ul',
 
-        initialize: function(collection, options) {            
-
+        initialize: function() {            
+            
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'remove', this.render);
             this.collection.fetch();

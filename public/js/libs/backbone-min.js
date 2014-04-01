@@ -5,22 +5,9 @@ Backbone.View.prototype.close = function() {
     
     this.stopListening();
     this.off();
+    this.undelegateEvents();
     this.unbind();
     delete this;
-    //this.$el.empty()
-    //this.remove();
-
-
-    // _.each(this.subviews, function(subview) {
-    //     subview.$el.empty();
-    //     //console.log('emp')
-    //     if (subview.subviews) {
-    //         _.each(subview.subviews, function(subview) {
-    //             subview.close();
-    //         });
-    //     }
-    //     subview.close();
-    // });
 
     console.log('closed')
 };
@@ -33,16 +20,3 @@ Backbone.View = (function(View) {
         }
     });
 })(Backbone.View);
-
-//Backbone.View.prototype.subviews = [];
-
-// Backbone.View.prototype.close = function() {
-
-//     this.remove();
-//     this.unbind();
-
-//     _.each(this.subviews, function(subview) {
-//         subview.close();
-//     });
-//     console.log('closed')
-// };

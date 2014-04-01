@@ -55,7 +55,8 @@ define([
             };
 
             this.userCollection.create(user, {wait: true});
-            this.userCollection.fetch()
+            this.userCollection.fetch();
+            this.modal.addClass('hidden');
         },
 
         renderUserList: function(obj) {
